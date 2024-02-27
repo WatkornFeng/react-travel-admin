@@ -25,12 +25,3 @@ function AppLayout() {
 }
 
 export default AppLayout;
-// <StyledAppLayout>
-//   <Header />
-//   <Sidebar />
-//   <Main>
-//     <Container>
-//       <Outlet />
-//     </Container>
-//   </Main>
-// </StyledAppLayout>

@@ -1,18 +1,22 @@
-import { ThemeProvider, createTheme } from "@mui/material";
-import { createContext, useContext, useMemo, useState } from "react";
-
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+export type IModePalette = "light" | "dark";
 interface IColorModeContext {
   toggleColorMode: () => void;
+  mode: IModePalette;
 }
 
 export const ColorModeContext = createContext<IColorModeContext>({
   toggleColorMode: () => {},
+  mode: "light",
 });
 
 function ColorModeProvider({ children }: { children: React.ReactNode }) {
-  const [mode, setMode] = useState<"light" | "dark">("light");
-
-  const colorMode = useMemo(
+  const [mode, setMode] = useState<IModePalette>("light");
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches)
+      setMode("dark");
+  }, []);
+  const { toggleColorMode } = useMemo(
     () => ({
       toggleColorMode: () => {
         setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
@@ -20,26 +24,10 @@ function ColorModeProvider({ children }: { children: React.ReactNode }) {
     }),
     []
   );
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-        typography: {
-          "fontFamily": `"Nunito Sans", "Helvetica", "Arial", sans-serif`,
-          "fontSize": 16,
-          "fontWeightLight": 300,
-          "fontWeightRegular": 400,
-          "fontWeightMedium": 500,
-        },
-      }),
-    [mode]
-  );
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <ColorModeContext.Provider value={{ toggleColorMode, mode }}>
+      {children}
     </ColorModeContext.Provider>
   );
 }

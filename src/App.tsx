@@ -1,14 +1,19 @@
+import { useMemo } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { themeColors } from "./theme";
+import { useColorMode } from "./context/ColorModeContext";
 import AppLayout from "./components/AppLayout";
-
 import Bookings from "./pages/Bookings";
 import Dashboard from "./pages/Dashboard";
 import Accounts from "./pages/Accounts";
-import { ColorModeProvider } from "./context/ColorModeContext";
 
 function App() {
+  const { mode } = useColorMode();
+  const theme = useMemo(() => createTheme(themeColors(mode)), [mode]);
   return (
-    <ColorModeProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
@@ -22,7 +27,7 @@ function App() {
         <Route path="*" element={<PageNotFound />} /> */}
         </Routes>
       </BrowserRouter>
-    </ColorModeProvider>
+    </ThemeProvider>
   );
 }
 

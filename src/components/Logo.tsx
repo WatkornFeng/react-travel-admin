@@ -21,7 +21,7 @@ function Logo() {
           maxHeight: "100px",
         }}
       />
-      <Typography fontWeight="bold" textTransform="uppercase">
+      <Typography fontWeight="bold" textTransform="uppercase" variant="body1">
         Smile Travel
       </Typography>
     </Box>
