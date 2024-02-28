@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom";
 import { Box, Typography, styled } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import KingBedIcon from "@mui/icons-material/KingBed";
 const NavList = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -12,12 +14,12 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   "&:link,&:visited": {
     textDecoration: "none",
     display: "flex",
+    alignSelf: "stretch",
+
     alignItems: "center",
     gap: "1.2rem",
     color: theme.palette.text.primary,
     transition: "all 0.3s",
-
-    minWidth: "50%",
   },
   "&:hover,&.active": {
     color: "yellow",
@@ -36,6 +38,14 @@ function MainNav() {
       <StyledNavLink to="/bookings">
         <LibraryBooksIcon />
         <Typography variant="subtitle1">Bookings</Typography>
+      </StyledNavLink>
+      <StyledNavLink to="/rooms">
+        <KingBedIcon />
+        <Typography variant="subtitle1">Rooms</Typography>
+      </StyledNavLink>
+      <StyledNavLink to="/property">
+        <ApartmentIcon />
+        <Typography variant="subtitle1">Property</Typography>
       </StyledNavLink>
     </NavList>
   );

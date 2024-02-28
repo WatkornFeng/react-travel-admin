@@ -7,7 +7,7 @@ const StyledSideBar = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: "2rem",
-  padding: "0.5rem 2rem",
+  paddingInline: "4rem",
   borderRight: "0.5px solid rgba(0,0,0,0.1)",
   backgroundColor: theme.palette.primary.main,
 }));

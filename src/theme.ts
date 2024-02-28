@@ -16,6 +16,7 @@ export const themeColors = (mode: IModePalette) => ({
           primary: {
             main: "#A9B9B7ff",
             // white: "#fff",
+            constrast: "#142B2Fff",
           },
           text: {
             primary: "#3A2C24ff",
@@ -25,6 +26,7 @@ export const themeColors = (mode: IModePalette) => ({
           // palette values for dark mode
           primary: {
             main: "#142B2Fff",
+            constrast: "#A9B9B7ff",
             // white: "#003366",
           },
           text: {
@@ -50,3 +52,5 @@ export const themeColors = (mode: IModePalette) => ({
 //     light: "#D0D1C6ff",
 //   },
 // },
+// mui form react : https://www.youtube.com/watch?v=nt8NTuUbuG4
+// example dashboard Airbnb : https://www.youtube.com/watch?v=O0Mjowmu7Js

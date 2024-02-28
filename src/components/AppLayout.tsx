@@ -10,7 +10,7 @@ const StyleAppLayout = styled(Box)(({ theme }) => ({
   height: "100vh",
 }));
 const MainLayout = styled(Box)(({ theme }) => ({
-  backgroundColor: "orange",
+  // backgroundColor: "orange",
 }));
 function AppLayout() {
   return (
