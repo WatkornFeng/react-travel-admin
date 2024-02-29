@@ -11,6 +11,7 @@ const StyleAppLayout = styled(Box)(({ theme }) => ({
 }));
 const MainLayout = styled(Box)(({ theme }) => ({
   padding: "2rem",
+  overflow: "auto",
 }));
 function AppLayout() {
   return (

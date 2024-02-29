@@ -1,74 +1,37 @@
-import { Box, TextField } from "@mui/material";
-import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { Box, Stack, TextField } from "@mui/material";
+import { styled } from "@mui/system";
+import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import toast from "react-hot-toast";
+import PropertyName from "./forminput/PropertyName";
+import PropertyDescription from "./forminput/PropertyDescription";
 
-interface IFormInput {
+export interface IFormInput {
   propertyName: string;
+  propertyDescription: string;
 }
+
 function CreatePropertyForm() {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<IFormInput>({
+  const methods = useForm<IFormInput>({
     defaultValues: {
       propertyName: "",
+      propertyDescription: "",
     },
   });
-  console.log(errors);
+
   const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="property">Property name</label>
-      <Controller
-        name="propertyName"
-        control={control}
-        rules={{
-          required: {
-            value: true,
-            message: "This field required",
-          },
-          maxLength: {
-            value: 40,
-            message: "Property name must have less or equal than 40 characters",
-          },
-          minLength: {
-            value: 10,
-            message: "Property name must have more or equal than 10 characters",
-          },
-        }}
-        render={({ field }) => (
-          <TextField
-            {...field}
-            id="property"
-            placeholder="Your property name."
-            variant="outlined"
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                color: "primary.constrast",
-                fontWeight: "bold",
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <Stack spacing={2}>
+          <label htmlFor="propertyName">Property name</label>
+          <PropertyName />
+          <label htmlFor="propertyDescription">Property description</label>
+          <PropertyDescription />
+        </Stack>
 
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "primary.constrast",
-                  borderWidth: "0.2rem",
-                },
-                "&.Mui-focused": {
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "lightgreen",
-                    borderWidth: "3px",
-                  },
-                },
-              },
-            }}
-            error={!!errors.propertyName}
-            helperText={errors.propertyName && errors.propertyName.message}
-          />
-        )}
-      />
-
-      <input type="submit" />
-    </form>
+        <input type="submit" />
+      </form>
+    </FormProvider>
   );
 }
 
