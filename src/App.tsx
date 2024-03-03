@@ -14,6 +14,8 @@ import { Toaster } from "react-hot-toast";
 import { grey } from "@mui/material/colors";
 
 import Property from "./pages/Property";
+import BecomeHost from "./pages/BecomeHost";
+import { BecomeHostProvider } from "./context/BecomeHostContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,41 +32,43 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <BrowserRouter>
-          <Routes>
-            <Route element={<AppLayout />}>
-              <Route index element={<Navigate replace to="dashboard" />} />
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="bookings" element={<Bookings />} />
-              <Route path="rooms" element={<Rooms />} />
-              <Route path="account" element={<Accounts />} />
-              <Route path="property" element={<Property />} />
-            </Route>
+        <BecomeHostProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<AppLayout />}>
+                <Route index element={<Navigate replace to="dashboard" />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="bookings" element={<Bookings />} />
+                <Route path="rooms" element={<Rooms />} />
+                <Route path="account" element={<Accounts />} />
+                <Route path="property" element={<Property />} />
+              </Route>
 
-            {/* <Route path="login" element={<Login />} />
-        <Route path="*" element={<PageNotFound />} /> */}
-          </Routes>
-        </BrowserRouter>
-        <Toaster
-          position="top-center"
-          gutter={12}
-          containerStyle={{ margin: "8px" }}
-          toastOptions={{
-            success: {
-              duration: 3000,
-            },
-            error: {
-              duration: 5000,
-            },
-            style: {
-              fontSize: "16px",
-              maxWidth: "500px",
-              padding: "16px 24px",
-              backgroundColor: grey[50],
-              color: grey[700],
-            },
-          }}
-        />
+              <Route path="become-a-host" element={<BecomeHost />} />
+              {/* <Route path="*" element={<PageNotFound />} />  */}
+            </Routes>
+          </BrowserRouter>
+          <Toaster
+            position="top-center"
+            gutter={12}
+            containerStyle={{ margin: "8px" }}
+            toastOptions={{
+              success: {
+                duration: 3000,
+              },
+              error: {
+                duration: 5000,
+              },
+              style: {
+                fontSize: "16px",
+                maxWidth: "500px",
+                padding: "16px 24px",
+                backgroundColor: grey[50],
+                color: grey[700],
+              },
+            }}
+          />
+        </BecomeHostProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

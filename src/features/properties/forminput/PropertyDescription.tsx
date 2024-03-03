@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
-import { IFormInput } from "../CreatePropertyForm";
+import IFormInput from "../CreatePropertyForm";
 import { StyledTextField } from "./StyledTextField";
 
 function PropertyDescription() {

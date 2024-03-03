@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import url from "../assets/logo/logo.png";
 import { styled } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 const StyledDialog = styled(Box)(({ theme }) => ({
   position: "absolute",
   zIndex: 2,
@@ -28,6 +29,7 @@ const StyledBackDrop = styled(Box)({
   backgroundSize: "50%",
 });
 function NoProperty() {
+  const navigate = useNavigate();
   return (
     <Box sx={{ position: "relative" }}>
       <StyledBackDrop />
@@ -36,6 +38,7 @@ function NoProperty() {
           You are not create property yet. Please create your property here!
         </Typography>
         <Button
+          onClick={() => navigate("/become-a-host")}
           sx={{
             bgcolor: "red",
             "&:hover,&.active": {

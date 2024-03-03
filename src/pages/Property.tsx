@@ -1,5 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import CreatePropertyForm from "../features/properties/CreatePropertyForm";
+import ModalForm from "../features/properties/ModalForm";
 
 function Property() {
   return (
@@ -8,7 +9,7 @@ function Property() {
         <Typography variant="h4" fontWeight="bold">
           Welcome! FengFeng
         </Typography>
-        <CreatePropertyForm />
+        {/* <CreatePropertyForm /> */}
       </Stack>
     </>
   );

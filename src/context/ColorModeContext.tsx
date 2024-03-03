@@ -3,11 +3,13 @@ export type IModePalette = "light" | "dark";
 interface IColorModeContext {
   toggleColorMode: () => void;
   mode: IModePalette;
+  setMode: React.Dispatch<React.SetStateAction<IModePalette>>;
 }
 
 export const ColorModeContext = createContext<IColorModeContext>({
   toggleColorMode: () => {},
   mode: "light",
+  setMode: () => {},
 });
 
 function ColorModeProvider({ children }: { children: React.ReactNode }) {
@@ -26,7 +28,7 @@ function ColorModeProvider({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <ColorModeContext.Provider value={{ toggleColorMode, mode }}>
+    <ColorModeContext.Provider value={{ toggleColorMode, mode, setMode }}>
       {children}
     </ColorModeContext.Provider>
   );
@@ -35,7 +37,7 @@ function ColorModeProvider({ children }: { children: React.ReactNode }) {
 function useColorMode() {
   const context = useContext(ColorModeContext);
   if (context === undefined)
-    throw new Error("ColorModeContext was used outside of DarkModeProvider");
+    throw new Error("ColorModeContext was used outside of ColorModeProvider");
   return context;
 }
 

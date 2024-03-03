@@ -6,7 +6,7 @@ export const StyledTextField = styled(TextField)({
     fontWeight: "bold",
 
     "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "primary.constrast",
+      borderColor: "text.primary",
       borderWidth: "0.2rem",
     },
     "&.Mui-focused": {

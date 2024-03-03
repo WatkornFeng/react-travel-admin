@@ -1,5 +1,7 @@
 import { blue, grey, lightBlue } from "@mui/material/colors";
 import { IModePalette } from "./context/ColorModeContext";
+import { createTheme } from "@mui/material";
+createTheme;
 export const themeColors = (mode: IModePalette) => ({
   typography: {
     fontFamily: `"Nunito Sans", "Helvetica", "Arial", sans-serif`,
@@ -8,6 +10,18 @@ export const themeColors = (mode: IModePalette) => ({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
   },
+  // components: {
+  //   MuiButton: {
+  //     styleOverrides: {
+  //       root: {
+  //         "&.Mui-disabled": {
+  //           // pointerEvents: "unset",
+  //           cursor: "not-allowed",
+  //         },
+  //       },
+  //     },
+  //   },
+  // },
   palette: {
     mode,
     ...(mode === "light"
@@ -15,9 +29,10 @@ export const themeColors = (mode: IModePalette) => ({
           // palette values for light mode
           primary: {
             main: "#A9B9B7ff",
-            // white: "#fff",
             constrast: "#142B2Fff",
+            // white: "#fff",
           },
+
           text: {
             primary: "#3A2C24ff",
           },
@@ -54,3 +69,4 @@ export const themeColors = (mode: IModePalette) => ({
 // },
 // mui form react : https://www.youtube.com/watch?v=nt8NTuUbuG4
 // example dashboard Airbnb : https://www.youtube.com/watch?v=O0Mjowmu7Js
+// React Hook Form - Controller ex https://codesandbox.io/p/sandbox/react-hook-form-v7-controller-5h1q5?file=%2Fsrc%2FButtonsResult.js
