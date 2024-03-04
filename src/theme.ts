@@ -29,6 +29,7 @@ export const themeColors = (mode: IModePalette) => ({
           // palette values for light mode
           primary: {
             main: "#A9B9B7ff",
+            // constrast: "#142B2Fff",
             constrast: "#142B2Fff",
             // white: "#fff",
           },
@@ -42,6 +43,7 @@ export const themeColors = (mode: IModePalette) => ({
           primary: {
             main: "#142B2Fff",
             constrast: "#A9B9B7ff",
+            // constrast: "#2A474Cff",
             // white: "#003366",
           },
           text: {

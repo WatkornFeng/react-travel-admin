@@ -19,7 +19,7 @@ function NavigateBtnNext({ setPage, page }: IProps) {
     },
   } = useBecomeHost() as IBecomeHostContext;
   const [isDisabled, setIsDisabled] = useState(false);
-
+  // console.log(countryCode);
   useEffect(() => {
     if (page === 1 && !propertyType) {
       return setIsDisabled(true);

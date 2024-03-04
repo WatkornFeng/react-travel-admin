@@ -18,17 +18,17 @@ function PickLocation() {
   const {
     dispatch,
     state: {
-      location: { latlng, countryCode },
+      location: { latlng, countryCode, locationStr },
     },
   } = useBecomeHost() as IBecomeHostContext;
 
   //   const [latlng, setLatLng] = useState<LatLng | null>(null);
-  const [location, setLocation] = useState<string | null>(null);
+  // const [location, setLocation] = useState<string | null>(null);
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
-    if (latlng === null) return;
+    if (latlng === null || locationStr) return;
     const locationString = async () => {
       const { lat, lng } = latlng;
       try {
@@ -46,10 +46,11 @@ function PickLocation() {
             latlng,
             province: state,
             countryCode: country_code,
+            locationStr: location,
           },
         });
         // console.log(country_code, state);
-        setLocation(location);
+        // setLocation(location);
         setIsloading(false);
         setIsError(false);
       } catch (err) {
@@ -62,6 +63,27 @@ function PickLocation() {
   return (
     <Stack spacing={5}>
       <Title title="Where's your place located?" />
+
+      {isLoading && <BouncingDotsLoader size="large" />}
+      {!isLoading && isError && (
+        <ErrorMessage text="Not Found location, Please try again" size="1rem" />
+      )}
+      {!isLoading && !isError && countryCode && countryCode === "th" && (
+        <Stack direction="row" spacing={1}>
+          <PlaceIcon color="error" />
+          <Typography fontSize={"1rem"} color="black">
+            {locationStr}
+          </Typography>
+        </Stack>
+      )}
+      {!isLoading && !isError && countryCode && countryCode !== "th" && (
+        <ErrorMessage text="Please select area in Thailand" size="1rem" />
+      )}
+      {!isLoading && !isError && locationStr === null && (
+        <Typography variant="subtitle2" color="black" fontWeight="bold">
+          Please select your location by click on the map or type at search box.
+        </Typography>
+      )}
       <Box
         sx={{
           position: "relative",
@@ -70,29 +92,10 @@ function PickLocation() {
         }}
       >
         <Map defaultLocation={locationBangkok} />
-        <SearchLocationBox />
+        <SearchLocationBox
+        // locationStr={location}
+        />
       </Box>
-
-      {isLoading && <BouncingDotsLoader />}
-      {!isLoading && isError && (
-        <ErrorMessage text="Not Found location, Please try again" />
-      )}
-      {!isLoading && !isError && countryCode && countryCode === "th" && (
-        <Stack direction="row" spacing={1}>
-          <PlaceIcon color="error" />
-          <Typography variant="subtitle2" color="black">
-            {location}
-          </Typography>
-        </Stack>
-      )}
-      {!isLoading && !isError && countryCode && countryCode !== "th" && (
-        <ErrorMessage text="Please select area in Thailand" />
-      )}
-      {!isLoading && !isError && location === null && (
-        <Typography variant="subtitle2" color="black" fontWeight="bold">
-          Please select your location by click on the map.
-        </Typography>
-      )}
     </Stack>
   );
 }

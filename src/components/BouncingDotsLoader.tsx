@@ -1,8 +1,15 @@
-import React from "react";
 import "../components/styles.css";
-function BouncingDotsLoader() {
+
+interface IProps {
+  size: "small" | "large";
+}
+
+function BouncingDotsLoader({ size }: IProps) {
+  const cssClass =
+    size === "small" ? "bouncing-loader-sm" : "bouncing-loader-large";
+  // console.log(cssClass);
   return (
-    <div className="bouncing-loader">
+    <div className={cssClass}>
       <div></div>
       <div></div>
       <div></div>

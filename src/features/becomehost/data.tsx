@@ -9,6 +9,7 @@ import VillaIcon from "@mui/icons-material/Villa";
 import ChooseProperty from "./ChooseProperty";
 import CreateName from "./CreateName";
 import PickLocation from "./PickLocation";
+import ChooseStar from "./ChooseStar";
 
 type PropertyDataType = {
   type: string;
@@ -80,5 +81,6 @@ type PageContentType = {
 export const pageContent: PageContentType[] = [
   { page: 1, content: <ChooseProperty /> },
   { page: 2, content: <PickLocation /> },
-  { page: 3, content: <CreateName /> },
+  { page: 3, content: <ChooseStar /> },
+  { page: 4, content: <CreateName /> },
 ];

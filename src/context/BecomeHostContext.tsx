@@ -6,6 +6,7 @@ interface ILocation {
   latlng: LatLngLiteral | null;
   province: string | null;
   countryCode: string | null;
+  locationStr: string | null;
 }
 interface IState {
   propertyType: string | null;
@@ -22,6 +23,7 @@ const initialState = {
     latlng: null,
     province: null,
     countryCode: null,
+    locationStr: null,
   },
 };
 export interface IBecomeHostContext {

@@ -1,9 +1,11 @@
-import { LatLng, LatLngExpression } from "leaflet";
+import { LatLng, LatLngExpression, LatLngLiteral } from "leaflet";
 import {
   MapContainer,
   Marker,
   Popup,
   TileLayer,
+  useMap,
+  useMapEvent,
   useMapEvents,
 } from "react-leaflet";
 import { MARKER_RED } from "./constant";
@@ -23,7 +25,12 @@ interface IProps {
 }
 
 function Map({ defaultLocation }: IProps) {
-  const { dispatch } = useBecomeHost() as IBecomeHostContext;
+  const {
+    dispatch,
+    state: {
+      location: { latlng },
+    },
+  } = useBecomeHost() as IBecomeHostContext;
 
   const LocationMarker = () => {
     const map = useMapEvents({
@@ -32,36 +39,40 @@ function Map({ defaultLocation }: IProps) {
           type: SELECT_LOCATION,
           payload: {
             latlng: event.latlng,
-            province: "",
-            countryCode: "",
+            province: null,
+            countryCode: null,
+            locationStr: null,
           },
         });
-        // setPosition(event.latlng);
+        map.flyTo(event.latlng);
       },
     });
-    return null;
+    return latlng === null ? null : (
+      <Marker position={latlng} icon={MARKER_RED}></Marker>
+    );
   };
 
   return (
     <MapContainer
       center={defaultLocation}
-      zoom={6}
+      zoom={8}
       scrollWheelZoom={true}
-      // style={{ height: "100vh" }}
       style={{ height: "500px", zIndex: 0 }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {/* <Marker position={locationBangkok} icon={MARKER_RED}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker> */}
+
       <LocationMarker />
+      {latlng && <ChangeCenter position={latlng} />}
     </MapContainer>
   );
+}
+function ChangeCenter({ position }: { position: LatLngLiteral }) {
+  const map = useMap();
+  map.setView(position);
+  return null;
 }
 
 export default Map;
