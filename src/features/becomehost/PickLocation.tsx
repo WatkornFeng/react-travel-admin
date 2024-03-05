@@ -81,7 +81,8 @@ function PickLocation() {
       )}
       {!isLoading && !isError && locationStr === null && (
         <Typography variant="subtitle2" color="black" fontWeight="bold">
-          Please select your location by click on the map or type at search box.
+          Please select your location by click on the map or enter your
+          location.
         </Typography>
       )}
       <Box

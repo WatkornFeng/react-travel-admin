@@ -6,6 +6,7 @@ import {
 
 import { useEffect, useState } from "react";
 import { StyledNavigateBtn } from "./StyledNavigateBtn";
+import { MAX_LENGTH_DESCRIPTION, MAX_LENGTH_NAME } from "../constant";
 
 interface IProps {
   setPage: (value: React.SetStateAction<number>) => void;
@@ -17,10 +18,12 @@ function NavigateBtnNext({ setPage, page }: IProps) {
       propertyType,
       location: { countryCode },
       propertyStars,
+      propertyName,
+      propertyDescription,
     },
   } = useBecomeHost() as IBecomeHostContext;
   const [isDisabled, setIsDisabled] = useState(false);
-  // console.log(countryCode);
+  // console.log(propertyName);
   useEffect(() => {
     if (page === 1 && !propertyType) {
       return setIsDisabled(true);
@@ -31,8 +34,28 @@ function NavigateBtnNext({ setPage, page }: IProps) {
     if (page === 3 && !propertyStars) {
       return setIsDisabled(true);
     }
+    if (
+      page === 4 &&
+      (!propertyName || propertyName.length > MAX_LENGTH_NAME)
+    ) {
+      return setIsDisabled(true);
+    }
+    if (
+      page === 5 &&
+      (!propertyDescription ||
+        propertyDescription.length > MAX_LENGTH_DESCRIPTION)
+    ) {
+      return setIsDisabled(true);
+    }
     setIsDisabled(false);
-  }, [propertyType, countryCode, page, propertyStars]);
+  }, [
+    propertyType,
+    countryCode,
+    page,
+    propertyStars,
+    propertyName,
+    propertyDescription,
+  ]);
 
   const handleNext = () => {
     setPage((prev) => prev + 1);

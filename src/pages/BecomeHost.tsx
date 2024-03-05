@@ -27,11 +27,17 @@ const StyledSideBar = styled(Box)(({ theme }) => ({
 }));
 
 function BecomeHost() {
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(4);
 
   const PageContent = () => {
     const content = pageContent.map((e, index) => {
-      return <Box key={index}>{e.page === page && e.content}</Box>;
+      return (
+        <Fade in timeout={1500} key={index}>
+          <div>
+            <Box>{e.page === page && e.content}</Box>
+          </div>
+        </Fade>
+      );
     });
 
     return content;

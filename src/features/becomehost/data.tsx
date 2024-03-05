@@ -10,6 +10,8 @@ import ChooseProperty from "./ChooseProperty";
 import CreateName from "./CreateName";
 import PickLocation from "./PickLocation";
 import ChooseStar from "./ChooseStar";
+import CreateDescription from "./CreateDescription";
+import ChooseAmenities from "./ChooseAmenities";
 // Data for Choose Property
 type PropertyDataType = {
   type: string;
@@ -85,4 +87,6 @@ export const pageContent: PageContentType[] = [
   { page: 2, content: <PickLocation /> },
   { page: 3, content: <ChooseStar /> },
   { page: 4, content: <CreateName /> },
+  { page: 5, content: <CreateDescription /> },
+  { page: 6, content: <ChooseAmenities /> },
 ];
