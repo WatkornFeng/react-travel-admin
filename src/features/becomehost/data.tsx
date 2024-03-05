@@ -10,7 +10,7 @@ import ChooseProperty from "./ChooseProperty";
 import CreateName from "./CreateName";
 import PickLocation from "./PickLocation";
 import ChooseStar from "./ChooseStar";
-
+// Data for Choose Property
 type PropertyDataType = {
   type: string;
   icon: JSX.Element;
@@ -73,7 +73,9 @@ export const propertyType: PropertyDataType[] = [
   //   icon: <VillaIcon sx={sxIcon} />,
   // },
 ];
-
+// Data for Choose Stars
+export const propertyStarsData = [1, 2, 3, 4, 5];
+// Data for EachPage
 type PageContentType = {
   page: number;
   content: JSX.Element;

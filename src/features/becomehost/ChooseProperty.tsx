@@ -38,11 +38,7 @@ function ChooseProperty() {
           {propertyTypeData.map(({ type, icon }, index) => (
             <Grow in timeout={1000 + index * 150} key={index}>
               <div>
-                <BtnCard
-                  propertyType={type}
-                  icon={icon}
-                  selectedValue={propertyType}
-                />
+                <BtnCard data={type} icon={icon} selectedValue={propertyType} />
               </div>
             </Grow>
           ))}

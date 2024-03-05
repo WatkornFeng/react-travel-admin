@@ -61,6 +61,7 @@ function App() {
               },
               style: {
                 fontSize: "16px",
+                fontWeight: "bold",
                 maxWidth: "500px",
                 padding: "16px 24px",
                 backgroundColor: grey[50],

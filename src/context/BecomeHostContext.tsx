@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { SELECT_LOCATION, SELECT_TYPE } from "./constant";
+import { SELECT_LOCATION, SELECT_STARS, SELECT_TYPE } from "./constant";
 import { LatLngLiteral } from "leaflet";
 
 interface ILocation {
@@ -10,12 +10,12 @@ interface ILocation {
 }
 interface IState {
   propertyType: string | null;
-
   location: ILocation;
+  propertyStars: number | null;
 }
 interface IAction {
   type: string;
-  payload: string | ILocation;
+  payload: string | ILocation | number;
 }
 const initialState = {
   propertyType: null,
@@ -25,6 +25,7 @@ const initialState = {
     countryCode: null,
     locationStr: null,
   },
+  propertyStars: null,
 };
 export interface IBecomeHostContext {
   state: IState;
@@ -38,6 +39,8 @@ function reducer(state: IState, action: IAction): IState {
       return { ...state, propertyType: action.payload as string };
     case SELECT_LOCATION:
       return { ...state, location: action.payload as ILocation };
+    case SELECT_STARS:
+      return { ...state, propertyStars: action.payload as number };
 
     default:
       return state;

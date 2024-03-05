@@ -15,7 +15,7 @@ const StyledNavigateTab = styled(Box)({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "flex-end",
-  width: "60%",
+  width: "62%",
   height: "120px",
   backgroundColor: "white",
   maskImage: "linear-gradient(to top, black 60%, transparent 100%)",

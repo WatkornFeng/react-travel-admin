@@ -1,14 +1,61 @@
 import { Box, Typography } from "@mui/material";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
-import useGeoLocation from "../../../hooks/useGeoLocation";
+import { SELECT_LOCATION } from "../../../context/constant";
+import {
+  IBecomeHostContext,
+  useBecomeHost,
+} from "../../../context/BecomeHostContext";
+import { useState } from "react";
+import { LatLngLiteral } from "leaflet";
+import toast from "react-hot-toast";
 
 function MyLocation() {
-  const { getLocation } = useGeoLocation();
-  //   console.log(geolocationPosition);
-
+  const {
+    dispatch,
+    state: {
+      location: { locationStr, province, countryCode },
+    },
+  } = useBecomeHost() as IBecomeHostContext;
+  const [myLocation, setMyLocation] = useState<LatLngLiteral | null>(null);
+  const getMyLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          dispatch({
+            type: SELECT_LOCATION,
+            payload: {
+              latlng: {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              },
+              locationStr,
+              province,
+              countryCode,
+            },
+          });
+          setMyLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        (error) => {
+          // console.error("Error getting geolocation:", error);
+          toast.error(
+            "We couldn’t find your location. Please enter your address or reset your permission.",
+            {
+              position: "top-center",
+              duration: 7000,
+            }
+          );
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
   return (
     <Box
-      onClick={getLocation}
+      onClick={getMyLocation}
       sx={{
         display: "flex",
         alignItems: "center",

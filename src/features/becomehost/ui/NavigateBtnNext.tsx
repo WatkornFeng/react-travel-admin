@@ -16,6 +16,7 @@ function NavigateBtnNext({ setPage, page }: IProps) {
     state: {
       propertyType,
       location: { countryCode },
+      propertyStars,
     },
   } = useBecomeHost() as IBecomeHostContext;
   const [isDisabled, setIsDisabled] = useState(false);
@@ -27,8 +28,11 @@ function NavigateBtnNext({ setPage, page }: IProps) {
     if (page === 2 && (!countryCode || countryCode !== "th")) {
       return setIsDisabled(true);
     }
+    if (page === 3 && !propertyStars) {
+      return setIsDisabled(true);
+    }
     setIsDisabled(false);
-  }, [propertyType, countryCode, page]);
+  }, [propertyType, countryCode, page, propertyStars]);
 
   const handleNext = () => {
     setPage((prev) => prev + 1);

@@ -21,23 +21,23 @@ const StyledCard = styled(Box)(({ theme, property }) => ({
 }));
 
 interface IProps {
-  propertyType: string;
-  icon: JSX.Element;
-  selectedValue?: string | null;
+  data: string | number;
+  icon: JSX.Element | JSX.Element[];
+  selectedValue?: string | number | null;
 }
-function BtnCard({ propertyType, icon, selectedValue }: IProps) {
-  const propertyIsSelected = selectedValue === propertyType ? "true" : "false";
+function BtnCard({ data, icon, selectedValue }: IProps) {
+  const IsSelected = selectedValue === data ? "true" : "false";
 
   return (
     <ToggleButton
-      value={propertyType}
+      value={data}
       sx={{
         padding: 0,
       }}
     >
-      <StyledCard property={propertyIsSelected}>
+      <StyledCard property={IsSelected}>
         <Box>{icon}</Box>
-        <Typography variant="subtitle2">{propertyType}</Typography>
+        <Typography variant="subtitle2">{data}</Typography>
       </StyledCard>
     </ToggleButton>
   );
