@@ -14,7 +14,7 @@ function ChooseAmenities() {
     state: { amenities },
     dispatch,
   } = useBecomeHost() as IBecomeHostContext;
-  console.log(amenities);
+
   const handleSelectionChange = (
     event: React.MouseEvent<HTMLElement>,
     newValue: string

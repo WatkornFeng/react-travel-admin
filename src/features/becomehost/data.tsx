@@ -20,6 +20,8 @@ import ElevatorIcon from "@mui/icons-material/Elevator";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import PoolIcon from "@mui/icons-material/Pool";
 import ChoosePictures from "./ChoosePictures";
+import ReviewProperty from "./ReviewProperty";
+import ChoosePrices from "./ChoosePrices";
 // Data for Choose Property
 type PropertyDataType = {
   type: string;
@@ -92,4 +94,6 @@ export const pageContent: PageContentType[] = [
   { page: 5, content: <CreateDescription /> },
   { page: 6, content: <ChooseAmenities /> },
   { page: 7, content: <ChoosePictures /> },
+  { page: 8, content: <ChoosePrices /> },
+  { page: 9, content: <ReviewProperty /> },
 ];

@@ -4,6 +4,7 @@ import {
   CREATE_NAME,
   SELECT_AMENITIES,
   SELECT_LOCATION,
+  SELECT_PICTURES,
   SELECT_STARS,
   SELECT_TYPE,
 } from "./constant";
@@ -22,10 +23,12 @@ interface IState {
   propertyName: string | null;
   propertyDescription: string | null;
   amenities: string[] | null;
+
+  pictures: File[] | null;
 }
 export interface IAction {
   type: string;
-  payload: string | string[] | ILocation | number;
+  payload: string | string[] | ILocation | number | File[];
 }
 const initialState = {
   propertyType: null,
@@ -39,6 +42,7 @@ const initialState = {
   propertyName: null,
   propertyDescription: null,
   amenities: [],
+  pictures: null,
 };
 export interface IBecomeHostContext {
   state: IState;
@@ -60,6 +64,8 @@ function reducer(state: IState, action: IAction): IState {
       return { ...state, propertyDescription: action.payload as string };
     case SELECT_AMENITIES:
       return { ...state, amenities: action.payload as string[] };
+    case SELECT_PICTURES:
+      return { ...state, pictures: action.payload as File[] };
     default:
       return state;
   }
