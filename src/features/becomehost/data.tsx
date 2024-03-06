@@ -12,6 +12,14 @@ import PickLocation from "./PickLocation";
 import ChooseStar from "./ChooseStar";
 import CreateDescription from "./CreateDescription";
 import ChooseAmenities from "./ChooseAmenities";
+import WifiIcon from "@mui/icons-material/Wifi";
+import AcUnitIcon from "@mui/icons-material/AcUnit";
+import TvIcon from "@mui/icons-material/Tv";
+import LocalParkingIcon from "@mui/icons-material/LocalParking";
+import ElevatorIcon from "@mui/icons-material/Elevator";
+import RestaurantIcon from "@mui/icons-material/Restaurant";
+import PoolIcon from "@mui/icons-material/Pool";
+import ChoosePictures from "./ChoosePictures";
 // Data for Choose Property
 type PropertyDataType = {
   type: string;
@@ -54,26 +62,20 @@ export const propertyType: PropertyDataType[] = [
     type: "Villa",
     icon: <VillaIcon sx={sxIcon} />,
   },
-  // {
-  //   type: "Villa",
-  //   icon: <VillaIcon sx={sxIcon} />,
-  // },
-  // {
-  //   type: "Villa",
-  //   icon: <VillaIcon sx={sxIcon} />,
-  // },
-  // {
-  //   type: "Villa",
-  //   icon: <VillaIcon sx={sxIcon} />,
-  // },
-  // {
-  //   type: "Villa",
-  //   icon: <VillaIcon sx={sxIcon} />,
-  // },
-  // {
-  //   type: "Villa",
-  //   icon: <VillaIcon sx={sxIcon} />,
-  // },
+];
+// Data for Choose Amenities
+interface IAmenitiesData {
+  amenity: string;
+  icon: JSX.Element;
+}
+export const amenitiesData: IAmenitiesData[] = [
+  { amenity: "wifi", icon: <WifiIcon /> },
+  { amenity: "tv", icon: <TvIcon /> },
+  { amenity: "ac", icon: <AcUnitIcon /> },
+  { amenity: "parking", icon: <LocalParkingIcon /> },
+  { amenity: "elevator", icon: <ElevatorIcon /> },
+  { amenity: "restaurant", icon: <RestaurantIcon /> },
+  { amenity: "pool", icon: <PoolIcon /> },
 ];
 // Data for Choose Stars
 export const propertyStarsData = [1, 2, 3, 4, 5];
@@ -89,4 +91,5 @@ export const pageContent: PageContentType[] = [
   { page: 4, content: <CreateName /> },
   { page: 5, content: <CreateDescription /> },
   { page: 6, content: <ChooseAmenities /> },
+  { page: 7, content: <ChoosePictures /> },
 ];

@@ -1,45 +1,45 @@
-import { Box, styled, ToggleButton, Typography } from "@mui/material";
+import { Box, styled, ToggleButton } from "@mui/material";
 
-const StyledCard = styled(Box)(({ theme, property }) => ({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
+const StyledCard = styled(ToggleButton)(({ theme }) => ({
+  "&.MuiToggleButton-root": {
+    color: `${theme.palette.primary.main}`,
+    backgroundColor: "white",
+    border: "3px solid black",
+    borderRadius: "20px",
+    padding: "18px",
+    transition: "transform ease-out 0.3s",
+    width: "10rem",
 
-  border: "3px solid black",
-  borderRadius: "20px",
-  padding: "18px",
-
-  transition: "transform ease-out 0.3s",
-  width: "10rem",
-  color: property === "true" ? "white" : theme.palette.primary.main,
-  transform: property === "true" ? "scale(1.15)" : "scale(1.1)",
-  backgroundColor: property === "true" ? theme.palette.primary.main : "white",
-  overflow: "hidden",
-  "&:hover": {
-    transform: "scale(1.15)",
+    "&:hover": {
+      transform: "scale(1.15)",
+    },
+    "&.Mui-selected": {
+      color: "white",
+      backgroundColor: `${theme.palette.primary.main}`,
+    },
   },
 }));
 
 interface IProps {
   data: string | number;
   icon: JSX.Element | JSX.Element[];
-  selectedValue?: string | number | null;
 }
-function BtnCard({ data, icon, selectedValue }: IProps) {
-  const IsSelected = selectedValue === data ? "true" : "false";
-
+function BtnCard({ data, icon }: IProps) {
   return (
-    <ToggleButton
-      value={data}
-      sx={{
-        padding: 0,
-      }}
-    >
-      <StyledCard property={IsSelected}>
-        <Box>{icon}</Box>
-        <Typography variant="subtitle2">{data}</Typography>
-      </StyledCard>
-    </ToggleButton>
+    <StyledCard value={data}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "0.7rem",
+        }}
+      >
+        {icon}
+        {data}
+      </Box>
+    </StyledCard>
   );
 }
 

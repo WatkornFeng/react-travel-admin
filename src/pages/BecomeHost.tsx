@@ -27,7 +27,7 @@ const StyledSideBar = styled(Box)(({ theme }) => ({
 }));
 
 function BecomeHost() {
-  const [page, setPage] = useState<number>(4);
+  const [page, setPage] = useState<number>(6);
 
   const PageContent = () => {
     const content = pageContent.map((e, index) => {

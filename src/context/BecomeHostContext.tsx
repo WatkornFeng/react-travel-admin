@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 import {
   CREATE_DESCRIPTION,
   CREATE_NAME,
+  SELECT_AMENITIES,
   SELECT_LOCATION,
   SELECT_STARS,
   SELECT_TYPE,
@@ -24,7 +25,7 @@ interface IState {
 }
 export interface IAction {
   type: string;
-  payload: string | ILocation | number;
+  payload: string | string[] | ILocation | number;
 }
 const initialState = {
   propertyType: null,
@@ -37,7 +38,7 @@ const initialState = {
   propertyStars: null,
   propertyName: null,
   propertyDescription: null,
-  amenities: null,
+  amenities: [],
 };
 export interface IBecomeHostContext {
   state: IState;
@@ -57,6 +58,8 @@ function reducer(state: IState, action: IAction): IState {
       return { ...state, propertyName: action.payload as string };
     case CREATE_DESCRIPTION:
       return { ...state, propertyDescription: action.payload as string };
+    case SELECT_AMENITIES:
+      return { ...state, amenities: action.payload as string[] };
     default:
       return state;
   }

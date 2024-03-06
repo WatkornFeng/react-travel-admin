@@ -51,8 +51,11 @@ function ChooseStar() {
             <div>
               <BtnCard
                 data={star}
-                icon={<CountStarsIcon star={star} />}
-                selectedValue={propertyStars}
+                icon={
+                  <Stack spacing={1} direction="row">
+                    <CountStarsIcon star={star} />
+                  </Stack>
+                }
               />
             </div>
           </Grow>
