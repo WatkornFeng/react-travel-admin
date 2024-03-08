@@ -9,6 +9,7 @@ import { SELECT_STARS } from "../../context/constant";
 import { propertyStarsData } from "./data";
 import BtnCard from "./ui/BtnCard";
 import GradeIcon from "@mui/icons-material/Grade";
+import CountStarsIcon from "./ui/CountStarsIcon";
 function ChooseStar() {
   const {
     state: { propertyStars },
@@ -22,17 +23,6 @@ function ChooseStar() {
     dispatch({ type: SELECT_STARS, payload: newValue });
   };
 
-  const CountStarsIcon = ({ star }: { star: number }) => {
-    const newArray = Array.from({ length: star }, (_, index) => index + 1);
-    return newArray.map((e) => (
-      <GradeIcon
-        key={e}
-        sx={{
-          fontSize: "1.2rem",
-        }}
-      />
-    ));
-  };
   return (
     <Stack spacing={7}>
       <Title title="What is your property stars?" />
@@ -53,7 +43,7 @@ function ChooseStar() {
                 data={star}
                 icon={
                   <Stack spacing={1} direction="row">
-                    <CountStarsIcon star={star} />
+                    <CountStarsIcon star={star} color="#e6c200" />
                   </Stack>
                 }
               />

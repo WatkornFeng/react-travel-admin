@@ -6,7 +6,14 @@ import {
 
 import { useEffect, useState } from "react";
 import { StyledNavigateBtn } from "./StyledNavigateBtn";
-import { MAX_LENGTH_DESCRIPTION, MAX_LENGTH_NAME } from "../constant";
+import {
+  COUNTRY_CODE,
+  MAX_LENGTH_DESCRIPTION,
+  MAX_LENGTH_NAME,
+  MAX_PRICE,
+  MIN_PICTURES,
+  MIN_PRICE,
+} from "../constant";
 
 interface IProps {
   setPage: (value: React.SetStateAction<number>) => void;
@@ -20,15 +27,17 @@ function NavigateBtnNext({ setPage, page }: IProps) {
       propertyStars,
       propertyName,
       propertyDescription,
+      pictures,
+      prices,
     },
   } = useBecomeHost() as IBecomeHostContext;
   const [isDisabled, setIsDisabled] = useState(false);
-  // console.log(propertyName);
+  // console.log(pictures);
   useEffect(() => {
     if (page === 1 && !propertyType) {
       return setIsDisabled(true);
     }
-    if (page === 2 && (!countryCode || countryCode !== "th")) {
+    if (page === 2 && (!countryCode || countryCode !== COUNTRY_CODE)) {
       return setIsDisabled(true);
     }
     if (page === 3 && !propertyStars) {
@@ -47,6 +56,12 @@ function NavigateBtnNext({ setPage, page }: IProps) {
     ) {
       return setIsDisabled(true);
     }
+    if (page === 7 && (!pictures || pictures.length < MIN_PICTURES)) {
+      return setIsDisabled(true);
+    }
+    if (page === 8 && (!prices || prices < MIN_PRICE || prices > MAX_PRICE)) {
+      return setIsDisabled(true);
+    }
     setIsDisabled(false);
   }, [
     propertyType,
@@ -55,6 +70,8 @@ function NavigateBtnNext({ setPage, page }: IProps) {
     propertyStars,
     propertyName,
     propertyDescription,
+    pictures,
+    prices,
   ]);
 
   const handleNext = () => {

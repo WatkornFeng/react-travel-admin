@@ -39,8 +39,7 @@ const StyledShadowImage = styled(Box)({
 });
 const StyledGroupImage = styled(Box)({
   display: "flex",
-  //   justifyContent: "center",
-  //   backgroundColor: "red",
+
   flexWrap: "wrap",
   gap: "1rem",
 });
@@ -72,6 +71,12 @@ function ChoosePictures() {
       loadImage(pictures);
     }
   }, [pictures]);
+
+  const handleDeletePicture = (
+    event: React.MouseEventHandler<HTMLButtonElement>
+  ) => {
+    console.log(event);
+  };
   return (
     <>
       <Stack spacing={2}>
