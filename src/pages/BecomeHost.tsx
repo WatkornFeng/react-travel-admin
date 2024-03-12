@@ -1,9 +1,18 @@
 import { useState } from "react";
-import { Box, styled, Stack, Fade } from "@mui/material";
+import {
+  Box,
+  styled,
+  Stack,
+  Fade,
+  LinearProgress,
+  LinearProgressProps,
+  Typography,
+} from "@mui/material";
 import Logo from "../components/Logo";
 import WelcomeText from "../features/becomehost/ui/WelcomeText";
 import NavigateTab from "../features/becomehost/ui/NavigateTab";
 import { pageContent } from "../features/becomehost/data";
+import ProgressBar from "../features/becomehost/ui/ProgressBar";
 
 const StyleLayout = styled(Box)(({ theme }) => ({
   display: "grid",
@@ -15,7 +24,7 @@ const StyleLayout = styled(Box)(({ theme }) => ({
 const StyledForm = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  paddingTop: "2rem",
+  // paddingTop: "2rem",
   paddingBottom: "5rem",
   backgroundColor: "white",
 }));
@@ -28,7 +37,7 @@ const StyledSideBar = styled(Box)(({ theme }) => ({
 
 function BecomeHost() {
   const [page, setPage] = useState<number>(1);
-
+  const progress = Math.round((page / pageContent.length) * 100);
   const PageContent = () => {
     const content = pageContent.map((e, index) => {
       return (
@@ -63,7 +72,8 @@ function BecomeHost() {
       </StyledSideBar>
 
       <StyledForm>
-        <Box sx={{ paddingInline: "6rem" }}>
+        <ProgressBar value={progress} />
+        <Box sx={{ paddingInline: "6rem", paddingTop: "2rem" }}>
           <PageContent />
         </Box>
         <NavigateTab setPage={setPage} page={page} />

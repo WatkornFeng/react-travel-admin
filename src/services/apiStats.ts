@@ -1,6 +1,6 @@
 //localhost:3000/api/v1/hotels/hotel-stats
 
-import { API_HOST_URL } from "./Constants";
+import { API_HOST_URL } from "./constants";
 
 interface IHotelStats {
   avgPrice: number;

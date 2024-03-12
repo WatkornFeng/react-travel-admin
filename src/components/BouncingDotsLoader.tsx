@@ -7,7 +7,7 @@ interface IProps {
 function BouncingDotsLoader({ size }: IProps) {
   const cssClass =
     size === "small" ? "bouncing-loader-sm" : "bouncing-loader-large";
-  // console.log(cssClass);
+
   return (
     <div className={cssClass}>
       <div></div>

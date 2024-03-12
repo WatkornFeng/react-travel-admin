@@ -19,7 +19,7 @@ function ChooseStar() {
     event: React.MouseEvent<HTMLElement>,
     newValue: number
   ) => {
-    console.log(newValue);
+    // console.log(newValue);
     dispatch({ type: SELECT_STARS, payload: newValue });
   };
 
@@ -43,7 +43,7 @@ function ChooseStar() {
                 data={star}
                 icon={
                   <Stack spacing={1} direction="row">
-                    <CountStarsIcon star={star} color="#e6c200" />
+                    <CountStarsIcon star={star} color="black" />
                   </Stack>
                 }
               />

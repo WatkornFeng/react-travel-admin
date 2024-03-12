@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, LinearProgress } from "@mui/material";
 
 import { styled } from "@mui/system";
 import NavigatePageBtn from "../../../components/NavigatePageBtn";

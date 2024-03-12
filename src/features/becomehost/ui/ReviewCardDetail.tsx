@@ -12,10 +12,12 @@ function ReviewCardDetail() {
       amenities,
       propertyName,
       location: { province },
+      propertyStars,
     },
   } = useBecomeHost() as IBecomeHostContext;
 
   const modifiedProvince = province && province.replace("Province", "");
+
   const sliceAmenities =
     amenities && amenities.length > 3 ? amenities.slice(0, 3) : amenities;
   const name =
@@ -25,15 +27,17 @@ function ReviewCardDetail() {
   return (
     <Box sx={{ height: "70%" }}>
       <Stack spacing={2}>
-        <Typography fontWeight="bold" fontSize="2rem" color="black">
+        <Typography fontWeight="bold" fontSize="1.5rem" color="black">
           {name}
         </Typography>
         <Stack direction="row">
-          <CountStarsIcon star={2} color="#e6c200" />
+          {propertyStars && (
+            <CountStarsIcon star={propertyStars} color="#e6c200" />
+          )}
         </Stack>
-        <Stack direction="row" spacing={1}>
+        <Stack direction="row" spacing={1} alignItems="center">
           <PlaceIcon sx={{ fontSize: "24px", color: "red" }} />
-          <Typography fontWeight="normal" color="black">
+          <Typography fontWeight="normal" color="black" fontSize="1rem">
             {modifiedProvince}
           </Typography>
         </Stack>
@@ -45,6 +49,7 @@ function ReviewCardDetail() {
                 display="inline-block"
                 marginRight="4px"
                 color="black"
+                fontSize="0.8rem"
               >
                 {amenity}
               </Typography>
@@ -54,6 +59,7 @@ function ReviewCardDetail() {
                   fontWeight="normal"
                   display="inline-block"
                   marginRight="4px"
+                  fontSize="0.8rem"
                 >
                   ,
                 </Typography>

@@ -26,10 +26,10 @@ function ReviewCardPrice() {
           gap: 1,
         }}
       >
-        <Typography fontWeight="bold" fontSize="3rem" color="black">
+        <Typography fontWeight="bold" fontSize="2rem" color="black">
           $
         </Typography>
-        <Typography fontWeight="bold" fontSize="3rem" color="black">
+        <Typography fontWeight="bold" fontSize="2rem" color="black">
           {prices}
         </Typography>
       </Box>

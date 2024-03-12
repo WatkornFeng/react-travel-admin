@@ -17,8 +17,8 @@ const Card = styled(Paper)({
   overflow: "hidden",
   backgroundColor: "white",
   marginTop: 30,
-  width: "80%",
-  height: "300px",
+  // width: "95%",
+  height: "350px",
 });
 
 function ReviewProperty() {
@@ -26,11 +26,13 @@ function ReviewProperty() {
     state: { pictures },
   } = useBecomeHost() as IBecomeHostContext;
   const [imageUrl, setImageUrl] = useState<string | ArrayBuffer | null>(null);
+
   useEffect(() => {
     if (pictures) {
       const loadImage = (file: File) => {
         const reader = new FileReader();
         reader.onload = () => {
+          // console.log(reader.result);
           setImageUrl(reader.result);
         };
 
@@ -40,6 +42,7 @@ function ReviewProperty() {
       loadImage(pictures[0]);
     }
   }, [pictures]);
+
   return (
     <>
       <Stack spacing={2}>
