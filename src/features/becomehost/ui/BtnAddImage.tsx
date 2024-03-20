@@ -11,6 +11,7 @@ function BtnAddImage() {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(event.target.files as FileList);
+    console.log(files);
     if (!files || files.length === 0) return;
     dispatch({ type: SELECT_PICTURES, payload: files });
   };

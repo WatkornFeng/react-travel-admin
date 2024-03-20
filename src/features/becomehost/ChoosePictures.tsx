@@ -20,23 +20,8 @@ import {
 } from "../../context/BecomeHostContext";
 import { useEffect, useState } from "react";
 import BtnAddImage from "./ui/BtnAddImage";
-// import Image from "./ui/Image";
-const StyledShadowImage = styled(Box)({
-  position: "absolute",
-  bgcolor: "red",
-  top: 0,
-  height: "100%",
-  width: "100%",
-  background:
-    "linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, " +
-    "rgba(0, 0, 0, 0.2) 20%, rgba(0,0,0,0.0) 30%)",
-  "&:hover": {
-    cursor: "pointer",
-    background:
-      "linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, " +
-      "rgba(0, 0, 0, 0.4) 70%, rgba(0,0,0,0.2) 100%)",
-  },
-});
+import Image from "./ui/Image";
+
 const StyledGroupImage = styled(Box)({
   display: "flex",
 
@@ -45,77 +30,49 @@ const StyledGroupImage = styled(Box)({
 });
 function ChoosePictures() {
   const {
-    state: { pictures },
+    state: { propertyPictures },
   } = useBecomeHost() as IBecomeHostContext;
 
   const [imageUrl, setImageUrl] = useState<string[] | null>(null);
-
+  // console.log(pictures?.length);
   useEffect(() => {
-    if (pictures) {
-      const dataURL: string[] = [];
-      const loadImage = (files: File[]) => {
-        files.forEach((file, index) => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            dataURL.push(reader.result as string);
+    const dataURL: string[] = [];
+    const loadImage = (files: File[]) => {
+      files.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          dataURL.push(reader.result as string);
 
-            if (index === files.length - 1) {
-              setImageUrl(dataURL);
-            }
-          };
+          if (index === files.length - 1) {
+            setImageUrl(dataURL);
+          }
+        };
 
-          reader.readAsDataURL(file);
-        });
-      };
+        reader.readAsDataURL(file);
+      });
+    };
 
-      loadImage(pictures);
+    if (!propertyPictures || propertyPictures?.length === 0) {
+      setImageUrl(null);
+    } else {
+      loadImage(propertyPictures);
     }
-  }, [pictures]);
+  }, [propertyPictures]);
+  // console.log(imageUrl);
 
-  const handleDeletePicture = (
-    event: React.MouseEventHandler<HTMLButtonElement>
-  ) => {
-    console.log(event);
-  };
   return (
     <>
       <Stack spacing={2}>
         <Title title="Add some photos of your property." />
         <SubTitle text="You'll need 5 photos to get started. You can add more or make changes later." />
-        {!pictures && <BtnSelectImage />}
+        {(!propertyPictures || propertyPictures.length === 0) && (
+          <BtnSelectImage />
+        )}
       </Stack>
       <StyledGroupImage>
         {imageUrl &&
           imageUrl.map((url, index) => (
-            <Box
-              key={index}
-              sx={{
-                borderRadius: "20px",
-                overflow: "hidden",
-                position: "relative",
-                height: "300px",
-                width: "400px",
-              }}
-            >
-              <Fade in timeout={1000 + index * 400} key={index}>
-                <img
-                  src={url}
-                  style={{
-                    height: "100%",
-
-                    width: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              </Fade>
-              <StyledShadowImage>
-                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                  <IconButton>
-                    <CancelIcon />
-                  </IconButton>
-                </Box>
-              </StyledShadowImage>
-            </Box>
+            <Image key={index} index={index} imageUrl={url} />
           ))}
         {imageUrl && (
           <Box>

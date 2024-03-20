@@ -3,10 +3,11 @@ import {
   IBecomeHostContext,
   useBecomeHost,
 } from "../../../context/BecomeHostContext";
+import { numberWithComma } from "../../../utils/formatNumber";
 
 function ReviewCardPrice() {
   const {
-    state: { prices },
+    state: { propertyPrices: prices },
   } = useBecomeHost() as IBecomeHostContext;
   return (
     <Box
@@ -30,7 +31,7 @@ function ReviewCardPrice() {
           $
         </Typography>
         <Typography fontWeight="bold" fontSize="2rem" color="black">
-          {prices}
+          {numberWithComma(prices)}
         </Typography>
       </Box>
     </Box>

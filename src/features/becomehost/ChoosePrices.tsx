@@ -11,7 +11,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 
 function ChoosePrices() {
   const {
-    state: { prices },
+    state: { propertyPrices: prices },
   } = useBecomeHost() as IBecomeHostContext;
   // console.log(prices);
   return (

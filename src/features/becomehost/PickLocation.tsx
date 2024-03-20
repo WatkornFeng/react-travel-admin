@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Title from "./ui/Title";
 import Map from "../../components/Map/Map";
 import { LatLng, LatLngExpression } from "leaflet";
-import { getLocationFromLatLng } from "../../utils/getLocation";
+import { getLocationFromLatLng } from "../../services/getLocation";
 import { Box, Stack, Typography } from "@mui/material";
 import BouncingDotsLoader from "../../components/BouncingDotsLoader";
 import ErrorMessage from "../../components/ErrorMessage";
@@ -18,7 +18,7 @@ function PickLocation() {
   const {
     dispatch,
     state: {
-      location: { latlng, countryCode, locationStr },
+      propertyLocation: { latlng, countryCode, locationStr },
     },
   } = useBecomeHost() as IBecomeHostContext;
 
@@ -28,7 +28,8 @@ function PickLocation() {
   const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
-    if (latlng === null || locationStr) return;
+    if (latlng === null) return;
+    // if (latlng === null || locationStr) return;
     const locationString = async () => {
       const { lat, lng } = latlng;
       try {

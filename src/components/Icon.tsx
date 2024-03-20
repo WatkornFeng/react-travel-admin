@@ -9,6 +9,9 @@ function Icon({ base64Url, size }: IProps) {
   return (
     <Box
       sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         height: `${size}`,
         width: `${size}`,
       }}

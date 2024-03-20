@@ -14,6 +14,7 @@ export const ColorModeContext = createContext<IColorModeContext>({
 
 function ColorModeProvider({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<IModePalette>("light");
+
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches)
       setMode("dark");

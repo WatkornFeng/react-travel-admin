@@ -1,5 +1,9 @@
 import { Box, styled, ToggleButton } from "@mui/material";
 import Icon from "../../../components/Icon";
+import {
+  IBecomeHostContext,
+  useBecomeHost,
+} from "../../../context/BecomeHostContext";
 
 const StyledCard = styled(ToggleButton)(({ theme }) => ({
   "&.MuiToggleButton-root": {
@@ -23,13 +27,23 @@ const StyledCard = styled(ToggleButton)(({ theme }) => ({
 
 interface IProps {
   data: string | number;
-  // icon: JSX.Element | JSX.Element[] | string;
+  id?: string;
   base64?: string;
-  icon?: JSX.Element | undefined;
+  icon?: JSX.Element;
 }
-function BtnCard({ data, base64, icon }: IProps) {
+function BtnCard({ data, base64, icon, id }: IProps) {
+  // const {
+  //   state: { propertyType },
+  //   dispatch,
+  // } = useBecomeHost() as IBecomeHostContext;
+
+  const dataWithBase64 =
+    data + " " + (base64 ? base64 : "") + " " + (id ? id : "");
+
+  // console.log(dataWithBase64);
   return (
-    <StyledCard value={data}>
+    // <StyledCard value={data}>
+    <StyledCard value={dataWithBase64}>
       <Box
         sx={{
           display: "flex",
@@ -41,7 +55,7 @@ function BtnCard({ data, base64, icon }: IProps) {
       >
         {base64 && <Icon base64Url={base64} size="2rem" />}
 
-        {icon ? icon : null}
+        {icon && icon}
         {data}
       </Box>
     </StyledCard>
@@ -49,28 +63,3 @@ function BtnCard({ data, base64, icon }: IProps) {
 }
 
 export default BtnCard;
-
-// interface IProps {
-//   data: string | number;
-//   icon: JSX.Element | JSX.Element[];
-// }
-// function BtnCard({ data, icon }: IProps) {
-//   return (
-//     <StyledCard value={data}>
-//       <Box
-//         sx={{
-//           display: "flex",
-//           flexDirection: "column",
-//           justifyContent: "center",
-//           alignItems: "center",
-//           gap: "0.7rem",
-//         }}
-//       >
-//         {icon}
-//         {data}
-//       </Box>
-//     </StyledCard>
-//   );
-// }
-
-// export default BtnCard;

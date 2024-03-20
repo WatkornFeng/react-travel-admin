@@ -24,62 +24,62 @@ import ReviewProperty from "./ReviewProperty";
 import ChoosePrices from "./ChoosePrices";
 import ChooseDetail from "./ChooseDetail";
 // Data for Choose Property
-type PropertyDataType = {
-  type: string;
-  icon: JSX.Element;
-};
-const sxIcon = {
-  transform: "scale(1.2)",
-  mr: "0.8rem",
-};
-export const propertyType: PropertyDataType[] = [
-  {
-    type: "Hotel",
-    icon: <LocationCityIcon sx={sxIcon} />,
-  },
-  {
-    type: "Hostel",
-    icon: <NightShelterIcon sx={sxIcon} />,
-  },
-  {
-    type: "Resort",
-    icon: <HolidayVillageIcon sx={sxIcon} />,
-  },
-  {
-    type: "Apartment",
-    icon: <ApartmentIcon sx={sxIcon} />,
-  },
-  {
-    type: "Aparthotel",
-    icon: <DomainDisabledIcon sx={sxIcon} />,
-  },
-  {
-    type: "B&B",
-    icon: <FreeBreakfastIcon sx={sxIcon} />,
-  },
-  {
-    type: "Home",
-    icon: <CottageIcon sx={sxIcon} />,
-  },
-  {
-    type: "Villa",
-    icon: <VillaIcon sx={sxIcon} />,
-  },
-];
+// type PropertyDataType = {
+//   type: string;
+//   icon: JSX.Element;
+// };
+// const sxIcon = {
+//   transform: "scale(1.2)",
+//   mr: "0.8rem",
+// };
+// export const propertyType: PropertyDataType[] = [
+//   {
+//     type: "Hotel",
+//     icon: <LocationCityIcon sx={sxIcon} />,
+//   },
+//   {
+//     type: "Hostel",
+//     icon: <NightShelterIcon sx={sxIcon} />,
+//   },
+//   {
+//     type: "Resort",
+//     icon: <HolidayVillageIcon sx={sxIcon} />,
+//   },
+//   {
+//     type: "Apartment",
+//     icon: <ApartmentIcon sx={sxIcon} />,
+//   },
+//   {
+//     type: "Aparthotel",
+//     icon: <DomainDisabledIcon sx={sxIcon} />,
+//   },
+//   {
+//     type: "B&B",
+//     icon: <FreeBreakfastIcon sx={sxIcon} />,
+//   },
+//   {
+//     type: "Home",
+//     icon: <CottageIcon sx={sxIcon} />,
+//   },
+//   {
+//     type: "Villa",
+//     icon: <VillaIcon sx={sxIcon} />,
+//   },
+// ];
 // Data for Choose Amenities
-interface IAmenitiesData {
-  amenity: string;
-  icon: JSX.Element;
-}
-export const amenitiesData: IAmenitiesData[] = [
-  { amenity: "wifi", icon: <WifiIcon /> },
-  { amenity: "tv", icon: <TvIcon /> },
-  { amenity: "ac", icon: <AcUnitIcon /> },
-  { amenity: "parking", icon: <LocalParkingIcon /> },
-  { amenity: "elevator", icon: <ElevatorIcon /> },
-  { amenity: "restaurant", icon: <RestaurantIcon /> },
-  { amenity: "pool", icon: <PoolIcon /> },
-];
+// interface IAmenitiesData {
+//   amenity: string;
+//   icon: JSX.Element;
+// }
+// export const amenitiesData: IAmenitiesData[] = [
+//   { amenity: "wifi", icon: <WifiIcon /> },
+//   { amenity: "tv", icon: <TvIcon /> },
+//   { amenity: "ac", icon: <AcUnitIcon /> },
+//   { amenity: "parking", icon: <LocalParkingIcon /> },
+//   { amenity: "elevator", icon: <ElevatorIcon /> },
+//   { amenity: "restaurant", icon: <RestaurantIcon /> },
+//   { amenity: "pool", icon: <PoolIcon /> },
+// ];
 // Data for Choose Stars
 export const propertyStarsData = [1, 2, 3, 4, 5];
 // Data for EachPage

@@ -13,10 +13,10 @@ function MyLocation() {
   const {
     dispatch,
     state: {
-      location: { locationStr, province, countryCode },
+      propertyLocation: { locationStr, province, countryCode },
     },
   } = useBecomeHost() as IBecomeHostContext;
-  const [myLocation, setMyLocation] = useState<LatLngLiteral | null>(null);
+  // const [myLocation, setMyLocation] = useState<LatLngLiteral | null>(null);
   const getMyLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -33,10 +33,10 @@ function MyLocation() {
               countryCode,
             },
           });
-          setMyLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
+          // setMyLocation({
+          //   lat: position.coords.latitude,
+          //   lng: position.coords.longitude,
+          // });
         },
         (error) => {
           // console.error("Error getting geolocation:", error);

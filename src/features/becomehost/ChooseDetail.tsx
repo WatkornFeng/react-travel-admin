@@ -21,7 +21,7 @@ import DetailList from "./ui/DetailList";
 function ChooseDetail() {
   const {
     state: {
-      details: { guests, beds },
+      propertyDetails: { guests, beds },
     },
   } = useBecomeHost() as IBecomeHostContext;
 

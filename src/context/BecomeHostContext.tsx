@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 import {
   CREATE_DESCRIPTION,
   CREATE_NAME,
+  DELETE_PICTURE,
   SELECT_AMENITIES,
   SELECT_BED,
   SELECT_GUEST,
@@ -19,27 +20,31 @@ interface ILocation {
   countryCode: string | null;
   locationStr: string | null;
 }
-interface IState {
+interface IAmenities {
+  value: string;
+  base64Url: string;
+}
+export interface IBecomeHostState {
   propertyType: string | null;
-  location: ILocation;
+  propertyLocation: ILocation;
   propertyStars: number | null;
   propertyName: string | null;
   propertyDescription: string | null;
-  amenities: string[] | null;
-  pictures: File[] | null;
-  prices: number;
-  details: {
+  propertyAmenities: string[] | null;
+  propertyPictures: File[] | null;
+  propertyPrices: number;
+  propertyDetails: {
     guests: number;
     beds: number;
   };
 }
 export interface IAction {
   type: string;
-  payload: string | string[] | ILocation | number | File[];
+  payload: string | string[] | ILocation | number | File[] | IAmenities[];
 }
 const initialState = {
   propertyType: null,
-  location: {
+  propertyLocation: {
     latlng: null,
     province: null,
     countryCode: null,
@@ -48,26 +53,26 @@ const initialState = {
   propertyStars: null,
   propertyName: null,
   propertyDescription: null,
-  amenities: [],
-  pictures: null,
-  prices: 75,
-  details: {
+  propertyAmenities: null,
+  propertyPictures: null,
+  propertyPrices: 75,
+  propertyDetails: {
     guests: 1,
     beds: 1,
   },
 };
 export interface IBecomeHostContext {
-  state: IState;
+  state: IBecomeHostState;
   dispatch: React.Dispatch<IAction>;
 }
 export const BecomeHostContext = createContext<IBecomeHostContext | null>(null);
 
-function reducer(state: IState, action: IAction): IState {
+function reducer(state: IBecomeHostState, action: IAction): IBecomeHostState {
   switch (action.type) {
     case SELECT_TYPE:
       return { ...state, propertyType: action.payload as string };
     case SELECT_LOCATION:
-      return { ...state, location: action.payload as ILocation };
+      return { ...state, propertyLocation: action.payload as ILocation };
     case SELECT_STARS:
       return { ...state, propertyStars: action.payload as number };
     case CREATE_NAME:
@@ -75,27 +80,40 @@ function reducer(state: IState, action: IAction): IState {
     case CREATE_DESCRIPTION:
       return { ...state, propertyDescription: action.payload as string };
     case SELECT_AMENITIES:
-      return { ...state, amenities: action.payload as string[] };
+      return { ...state, propertyAmenities: action.payload as string[] };
+    // case SELECT_AMENITIES:
+    //   return { ...state, amenities: action.payload as IAmenities[] };
     case SELECT_PICTURES:
-      if (!state.pictures) {
-        return { ...state, pictures: action.payload as File[] };
+      if (!state.propertyPictures) {
+        return { ...state, propertyPictures: action.payload as File[] };
       } else {
         return {
           ...state,
-          pictures: [...state.pictures, ...(action.payload as File[])],
+          propertyPictures: [
+            ...state.propertyPictures,
+            ...(action.payload as File[]),
+          ],
         };
       }
+    case DELETE_PICTURE:
+      return { ...state, propertyPictures: action.payload as File[] };
     case SELECT_PRICE:
-      return { ...state, prices: action.payload as number };
+      return { ...state, propertyPrices: action.payload as number };
     case SELECT_GUEST:
       return {
         ...state,
-        details: { ...state.details, guests: action.payload as number },
+        propertyDetails: {
+          ...state.propertyDetails,
+          guests: action.payload as number,
+        },
       };
     case SELECT_BED:
       return {
         ...state,
-        details: { ...state.details, beds: action.payload as number },
+        propertyDetails: {
+          ...state.propertyDetails,
+          beds: action.payload as number,
+        },
       };
 
     default:

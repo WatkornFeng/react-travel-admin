@@ -27,7 +27,7 @@ const StyledInputBox = styled(Box)(({ theme }) => ({
 
 function InputPrice() {
   const {
-    state: { prices },
+    state: { propertyPrices: prices },
     dispatch,
   } = useBecomeHost() as IBecomeHostContext;
 

@@ -1,7 +1,7 @@
 import { Grow, Stack, ToggleButtonGroup, Box } from "@mui/material";
 import Title from "./ui/Title";
 import SubTitle from "./ui/SubTitle";
-import { amenitiesData } from "./data";
+
 import BtnCard from "./ui/BtnCard";
 import {
   IBecomeHostContext,
@@ -14,9 +14,10 @@ import BouncingDotsLoader from "../../components/BouncingDotsLoader";
 
 function ChooseAmenities() {
   const {
-    state: { amenities },
+    state: { propertyAmenities },
     dispatch,
   } = useBecomeHost() as IBecomeHostContext;
+  // console.log(amenities);
   const {
     isError,
     isLoading,
@@ -25,12 +26,16 @@ function ChooseAmenities() {
     queryKey: ["amenities"],
     queryFn: getAmenities,
   });
+
   const handleSelectionChange = (
     event: React.MouseEvent<HTMLElement>,
     newValue: string
   ) => {
+    // console.log(newValue);
     dispatch({ type: SELECT_AMENITIES, payload: newValue });
   };
+
+  // const x = amenities?.map((e) => e.value);
 
   return (
     <>
@@ -40,7 +45,6 @@ function ChooseAmenities() {
         {isLoading && (
           <Box
             sx={{
-              // backgroundColor: "red",
               height: "50vh",
               display: "flex",
               justifyContent: "center",
@@ -53,7 +57,7 @@ function ChooseAmenities() {
         {amenitiesList && (
           <ToggleButtonGroup
             aria-multiselectable
-            value={amenities}
+            value={propertyAmenities}
             onChange={handleSelectionChange}
             sx={{
               display: "flex",
@@ -61,10 +65,10 @@ function ChooseAmenities() {
               gap: "38px",
             }}
           >
-            {amenitiesList.map(({ name, svg }, index) => (
-              <Grow in timeout={1000 + index * 150} key={index}>
+            {amenitiesList.map(({ name, svg, _id }, index) => (
+              <Grow in timeout={1000 + index * 150} key={_id}>
                 <div>
-                  <BtnCard data={name} base64={svg} />
+                  <BtnCard data={name} base64={svg} id={_id} />
                 </div>
               </Grow>
             ))}

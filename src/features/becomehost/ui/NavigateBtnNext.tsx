@@ -23,16 +23,29 @@ function NavigateBtnNext({ setPage, page }: IProps) {
   const {
     state: {
       propertyType,
-      location: { countryCode },
+      propertyLocation: { countryCode },
       propertyStars,
       propertyName,
       propertyDescription,
-      pictures,
-      prices,
+      propertyPictures: pictures,
+      propertyPrices: prices,
+      // propertyAmenities:amenities,
     },
   } = useBecomeHost() as IBecomeHostContext;
   const [isDisabled, setIsDisabled] = useState(false);
-  // console.log(pictures);
+
+  // console.log(
+  //   propertyType,
+  //   countryCode,
+  //   latlng,
+  //   province,
+  //   propertyStars,
+  //   propertyName,
+  //   propertyDescription,
+  //   pictures,
+  //   prices,
+  //   amenities
+  // );
   useEffect(() => {
     if (page === 1 && !propertyType) {
       return setIsDisabled(true);

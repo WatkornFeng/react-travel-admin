@@ -6,12 +6,8 @@ import {
 } from "../../context/BecomeHostContext";
 import Title from "./ui/Title";
 import BtnCard from "./ui/BtnCard";
-import { propertyType as propertyTypeData } from "./data";
-
 import { SELECT_TYPE } from "../../context/constant";
 import { ISVG, getPropertyType } from "../../services/apiBecomeHost";
-import Icon from "../../components/Icon";
-import { purple } from "@mui/material/colors";
 import BouncingDotsLoader from "../../components/BouncingDotsLoader";
 
 function ChooseProperty() {
@@ -27,7 +23,7 @@ function ChooseProperty() {
     queryKey: ["property_type"],
     queryFn: getPropertyType,
   });
-  console.log(propertyList);
+  // console.log(propertyList);
   const handleSelectionChange = (
     event: React.MouseEvent<HTMLElement>,
     newValue: string
@@ -62,10 +58,10 @@ function ChooseProperty() {
               gap: "38px",
             }}
           >
-            {(propertyList as ISVG[]).map(({ name, svg }, index) => (
-              <Grow in timeout={1000 + index * 150} key={index}>
+            {(propertyList as ISVG[]).map(({ name, svg, _id }, index) => (
+              <Grow in timeout={1000 + index * 150} key={_id}>
                 <div>
-                  <BtnCard data={name} base64={svg} />
+                  <BtnCard data={name} base64={svg} id={_id} />
                 </div>
               </Grow>
             ))}

@@ -9,13 +9,17 @@ import Dashboard from "./pages/Dashboard";
 import Accounts from "./pages/Accounts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import Rooms from "./pages/Rooms";
+// import Rooms from "./pages/Rooms";
 import { Toaster } from "react-hot-toast";
 import { grey } from "@mui/material/colors";
 
 import Property from "./pages/Property";
 import BecomeHost from "./pages/BecomeHost";
 import { BecomeHostProvider } from "./context/BecomeHostContext";
+import Welcome from "./pages/Welcome";
+import { Auth0Provider } from "@auth0/auth0-react";
+import Error from "./pages/Error";
+import PageNotFound from "./pages/PageNotFound";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,6 +28,8 @@ const queryClient = new QueryClient({
     },
   },
 });
+const domain = import.meta.env.VITE_AUTH0_DOMAIN;
+const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 function App() {
   const { mode } = useColorMode();
   const theme = useMemo(() => createTheme(themeColors(mode)), [mode]);
@@ -34,19 +40,29 @@ function App() {
         <CssBaseline />
         <BecomeHostProvider>
           <BrowserRouter>
-            <Routes>
-              <Route element={<AppLayout />}>
-                <Route index element={<Navigate replace to="dashboard" />} />
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="bookings" element={<Bookings />} />
-                <Route path="rooms" element={<Rooms />} />
-                <Route path="account" element={<Accounts />} />
-                <Route path="property" element={<Property />} />
-              </Route>
+            <Auth0Provider
+              domain={domain}
+              clientId={clientId}
+              authorizationParams={{
+                redirect_uri: window.location.origin + "/dashboard",
+              }}
+            >
+              <Routes>
+                <Route index element={<Welcome />} />
+                <Route path="become-a-host" element={<BecomeHost />} />
+                <Route element={<AppLayout />}>
+                  {/* <Route index element={<Navigate replace to="dashboard" />} /> */}
+                  <Route path="dashboard" element={<Dashboard />} />
+                  <Route path="bookings" element={<Bookings />} />
+                  {/* <Route path="rooms" element={<Rooms />} /> */}
+                  <Route path="account" element={<Accounts />} />
+                  <Route path="property" element={<Property />} />
+                </Route>
 
-              <Route path="become-a-host" element={<BecomeHost />} />
-              {/* <Route path="*" element={<PageNotFound />} />  */}
-            </Routes>
+                <Route path="*" element={<PageNotFound />} />
+                <Route path="error" element={<Error />} />
+              </Routes>
+            </Auth0Provider>
           </BrowserRouter>
           <Toaster
             position="top-center"

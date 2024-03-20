@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { searchLocation } from "../../../utils/getLocation";
+import { searchLocation } from "../../../services/getLocation";
 import { useState } from "react";
 import useDebounce from "../../../hooks/useDebounce";
 import PlaceIcon from "@mui/icons-material/Place";

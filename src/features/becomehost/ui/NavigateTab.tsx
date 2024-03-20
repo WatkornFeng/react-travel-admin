@@ -6,6 +6,11 @@ import { pageContent } from "../data";
 
 import NavigateBtnNext from "./NavigateBtnNext";
 import NavigateBtnBack from "./NavigateBtnBack";
+import {
+  IBecomeHostContext,
+  useBecomeHost,
+} from "../../../context/BecomeHostContext";
+import CreatePropertyBtn from "./CreatePropertyBtn";
 
 interface IProps {
   setPage: React.Dispatch<React.SetStateAction<number>>;
@@ -26,6 +31,18 @@ const StyledNavigateTab = styled(Box)({
 });
 
 function NavigateTab({ setPage, page }: IProps) {
+  // const {
+  //   state: {
+  //     propertyType,
+  //     location: { countryCode, latlng, province },
+  //     propertyStars,
+  //     propertyName,
+  //     propertyDescription,
+  //     pictures,
+  //     prices,
+  //     amenities,
+  //   },
+  // } = useBecomeHost() as IBecomeHostContext;
   return (
     <StyledNavigateTab>
       {page <= 1 ? (
@@ -34,7 +51,7 @@ function NavigateTab({ setPage, page }: IProps) {
         <NavigateBtnBack setPage={setPage} />
       )}
       {page >= pageContent.length ? (
-        <NavigatePageBtn text="Public" path="#" />
+        <CreatePropertyBtn />
       ) : (
         <NavigateBtnNext setPage={setPage} page={page} />
       )}

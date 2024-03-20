@@ -34,14 +34,9 @@ function MainNav() {
         <HomeIcon />
         <Typography variant="subtitle1">Dashboard</Typography>
       </StyledNavLink>
-
       <StyledNavLink to="/bookings">
         <LibraryBooksIcon />
         <Typography variant="subtitle1">Bookings</Typography>
-      </StyledNavLink>
-      <StyledNavLink to="/rooms">
-        <KingBedIcon />
-        <Typography variant="subtitle1">Rooms</Typography>
       </StyledNavLink>
       <StyledNavLink to="/property">
         <ApartmentIcon />

@@ -6,10 +6,11 @@ import {
   useBecomeHost,
 } from "../../context/BecomeHostContext";
 import { SELECT_STARS } from "../../context/constant";
-import { propertyStarsData } from "./data";
+
 import BtnCard from "./ui/BtnCard";
-import GradeIcon from "@mui/icons-material/Grade";
+
 import CountStarsIcon from "./ui/CountStarsIcon";
+const propertyStarsData = [1, 2, 3, 4, 5];
 function ChooseStar() {
   const {
     state: { propertyStars },

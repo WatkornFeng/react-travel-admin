@@ -10,7 +10,7 @@ import {
 } from "react-leaflet";
 import { MARKER_RED } from "./constant";
 import { useEffect, useState } from "react";
-import { getLocationFromLatLng } from "../../utils/getLocation";
+import { getLocationFromLatLng } from "../../services/getLocation";
 import {
   IBecomeHostContext,
   useBecomeHost,
@@ -28,7 +28,7 @@ function Map({ defaultLocation }: IProps) {
   const {
     dispatch,
     state: {
-      location: { latlng },
+      propertyLocation: { latlng },
     },
   } = useBecomeHost() as IBecomeHostContext;
 

@@ -26,7 +26,12 @@ function NavigatePageBtn({ text, path, type }: IProps) {
     navigate(path);
   };
   return (
-    <StyledBtn variant="outlined" onClick={handleClick} type={type}>
+    <StyledBtn
+      variant="outlined"
+      onClick={handleClick}
+      type={type}
+      color="success"
+    >
       <Box>{text}</Box>
     </StyledBtn>
   );

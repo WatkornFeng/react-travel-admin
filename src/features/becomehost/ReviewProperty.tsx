@@ -23,10 +23,11 @@ const Card = styled(Paper)({
 
 function ReviewProperty() {
   const {
-    state: { pictures },
+    state: { propertyPictures: pictures },
   } = useBecomeHost() as IBecomeHostContext;
   const [imageUrl, setImageUrl] = useState<string | ArrayBuffer | null>(null);
-
+  // console.log(state);
+  // console.log(pictures);
   useEffect(() => {
     if (pictures) {
       const loadImage = (file: File) => {
@@ -46,7 +47,7 @@ function ReviewProperty() {
   return (
     <>
       <Stack spacing={2}>
-        <Title title="Review your listing" />
+        <Title title="Review your property" />
         <SubTitle text="Here's what we'll show to guests. Make sure everything looks good." />
       </Stack>
       <Box sx={{ display: "flex", justifyContent: "center" }}>

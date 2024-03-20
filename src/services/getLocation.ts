@@ -33,7 +33,7 @@ export async function searchLocation(query: string | null) {
   }
 
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
 
   // Extract the location from the response
   // const location = data.display_name;
