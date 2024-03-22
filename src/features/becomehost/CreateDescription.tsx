@@ -2,12 +2,13 @@ import { Stack } from "@mui/material";
 import SubTitle from "./ui/SubTitle";
 import Title from "./ui/Title";
 import CharacterCounter from "./ui/CharacterCounter";
-import { MAX_LENGTH_DESCRIPTION } from "./constant";
+
 import { CREATE_DESCRIPTION } from "../../context/constant";
 import {
   IBecomeHostContext,
   useBecomeHost,
 } from "../../context/BecomeHostContext";
+import { MAX_LENGTH_DESCRIPTION } from "../../utils/constant";
 function CreateDescription() {
   const {
     state: { propertyDescription },

@@ -24,9 +24,10 @@ const StyleLayout = styled(Box)(({ theme }) => ({
 const StyledForm = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  // paddingTop: "2rem",
   paddingBottom: "5rem",
   backgroundColor: "white",
+  // backgroundColor: theme.palette..background,
+  // background: theme.palette.background.default,
 }));
 const StyledSideBar = styled(Box)(({ theme }) => ({
   display: "flex",

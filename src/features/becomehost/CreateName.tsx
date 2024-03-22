@@ -7,7 +7,7 @@ import {
   useBecomeHost,
 } from "../../context/BecomeHostContext";
 import { CREATE_NAME } from "../../context/constant";
-import { MAX_LENGTH_NAME } from "./constant";
+import { MAX_LENGTH_NAME } from "../../utils/constant";
 
 function CreateName() {
   const {

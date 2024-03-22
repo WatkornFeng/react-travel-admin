@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-import Icon from "../../../components/Icon";
+import Icon from "../../components/Icon";
 interface IProps {
   svg: string;
 }

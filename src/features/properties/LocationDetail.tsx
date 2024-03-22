@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { getLocationFromLatLng } from "../../../services/getLocation";
+import { getLocationFromLatLng } from "../../services/getLocation";
 import { Typography } from "@mui/material";
 
-import Spinner from "../../../components/Spinner";
-import ErrorMessage from "../../../components/ErrorMessage";
+import Spinner from "../../components/Spinner";
+import ErrorMessage from "../../components/ErrorMessage";
 
 interface IProps {
   coordinates: number[];

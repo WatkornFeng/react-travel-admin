@@ -6,23 +6,39 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
-  Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import PropertyName from "./forminput/PropertyName";
-function ModalForm() {
-  const [open, setOpen] = useState(true);
 
+interface IProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+  content?: JSX.Element;
+  fieldName: string;
+}
+function ModalForm({ isOpen, setIsOpen, content, fieldName }: IProps) {
+  // console.log(isOpen);
   const handleCloseDialog = () => {
-    setOpen(false);
+    if (setIsOpen) {
+      setIsOpen(false);
+    }
   };
+
+  // const handleMutate=()=>{
+  //   updateFn()
+  // }
   return (
-    <Dialog open={open} onClose={handleCloseDialog}>
+    <Dialog
+      maxWidth="lg"
+      color="success"
+      open={isOpen}
+      onClose={handleCloseDialog}
+    >
       <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-        Modal title
+        Your property's {fieldName}
       </DialogTitle>
       <IconButton
         aria-label="close"
+        onClick={handleCloseDialog}
         sx={{
           position: "absolute",
           right: 8,
@@ -31,23 +47,24 @@ function ModalForm() {
       >
         <CloseIcon />
       </IconButton>
-      <DialogContent dividers>
-        <PropertyName />
-      </DialogContent>
-      <DialogActions>
+      <DialogContent dividers>{content}</DialogContent>
+      {/* <DialogActions>
         <Button
+          // onClick={handleMutate}
           type="submit"
           variant="contained"
           sx={{
             bgcolor: "primary.constrast",
             color: "primary.main",
             fontWeight: "bold",
+            "&:hover": {
+              color: "primary.constrast",
+            },
           }}
-          onClick={handleCloseDialog}
         >
           Save
         </Button>
-      </DialogActions>
+      </DialogActions> */}
     </Dialog>
   );
 }

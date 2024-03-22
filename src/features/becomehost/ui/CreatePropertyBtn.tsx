@@ -91,9 +91,7 @@ function SubmitBtn() {
       color="warning"
       onClick={createProperty}
       disabled={isPending}
-      endIcon={
-        isPending ? <Spinner size="1rem" thick={10} color="red" /> : null
-      }
+      endIcon={isPending ? <Spinner size="1rem" thick={10} /> : null}
     >
       <Typography fontWeight="bold" fontSize="1rem">
         Create Property

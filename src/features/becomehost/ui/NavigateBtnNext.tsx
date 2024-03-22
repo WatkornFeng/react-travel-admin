@@ -6,15 +6,11 @@ import {
 
 import { useEffect, useState } from "react";
 import { StyledNavigateBtn } from "./StyledNavigateBtn";
+import { COUNTRY_CODE, MAX_PRICE, MIN_PICTURES, MIN_PRICE } from "../constant";
 import {
-  COUNTRY_CODE,
   MAX_LENGTH_DESCRIPTION,
   MAX_LENGTH_NAME,
-  MAX_PRICE,
-  MIN_PICTURES,
-  MIN_PRICE,
-} from "../constant";
-
+} from "../../../utils/constant";
 interface IProps {
   setPage: (value: React.SetStateAction<number>) => void;
   page: number;

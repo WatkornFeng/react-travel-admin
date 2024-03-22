@@ -1,5 +1,5 @@
-export const MAX_LENGTH_NAME = 40;
-export const MAX_LENGTH_DESCRIPTION = 500;
+// export const MAX_LENGTH_NAME = 40;
+// export const MAX_LENGTH_DESCRIPTION = 500;
 export const MAX_PRICE = 10000;
 export const MAX_GUESTS = 12;
 export const MAX_BEDS = 12;
