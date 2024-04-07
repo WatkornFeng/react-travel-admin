@@ -40,7 +40,7 @@ function MainNav() {
       </StyledNavLink>
       <StyledNavLink to="/property">
         <ApartmentIcon />
-        <Typography variant="subtitle1">Property</Typography>
+        <Typography variant="subtitle1">Properties</Typography>
       </StyledNavLink>
     </NavList>
   );

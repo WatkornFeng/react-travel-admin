@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 
 interface IProps {
-  detail: string;
+  detail: string | number;
 }
 
 function Content({ detail }: IProps) {

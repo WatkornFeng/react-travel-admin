@@ -1,11 +1,9 @@
 import { Stack, Box, Typography } from "@mui/material";
 import AmenityIcon from "./AmenityIcon";
-interface IAmenity {
-  name: string;
-  svg: string;
-}
+import { IAmenities } from "../../services/apiUser";
+
 interface IProps {
-  urls: IAmenity[];
+  urls: IAmenities[];
 }
 
 function AmenityItems({ urls }: IProps) {

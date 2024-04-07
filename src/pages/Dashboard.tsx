@@ -1,5 +1,8 @@
+import { Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 function Dashboard() {
-  return <div>Dashboard</div>;
+  return <div>Dash</div>;
 }
 
 export default Dashboard;

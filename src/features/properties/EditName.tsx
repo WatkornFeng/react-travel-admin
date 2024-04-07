@@ -35,7 +35,7 @@ function EditName({ data, propertyId, setModal }: IProps) {
     }) => updateProperty(fieldName, newData, id),
     onSuccess: () => {
       toast.success("Update Property name successfully.");
-      queryClient.invalidateQueries({ queryKey: ["user"] });
+      queryClient.invalidateQueries({ queryKey: ["property"] });
       // setModal(false);
     },
     onError: () => {

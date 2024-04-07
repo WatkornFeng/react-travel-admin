@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { themeColors } from "./theme";
 import { useColorMode } from "./context/ColorModeContext";
@@ -13,13 +13,14 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { grey } from "@mui/material/colors";
 
-import Property from "./pages/Property";
 import BecomeHost from "./pages/BecomeHost";
 import { BecomeHostProvider } from "./context/BecomeHostContext";
 import Welcome from "./pages/Welcome";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Error from "./pages/Error";
 import PageNotFound from "./pages/PageNotFound";
+import PropertyLists from "./pages/PropertyLists";
+import Property from "./pages/Property";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,10 @@ const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 function App() {
   const { mode } = useColorMode();
   const theme = useMemo(() => createTheme(themeColors(mode)), [mode]);
+  const users = [
+    { id: "1", fullName: "Robin Wieruch" },
+    { id: "2", fullName: "Sarah Finnley" },
+  ];
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
@@ -49,16 +54,18 @@ function App() {
             >
               <Routes>
                 <Route index element={<Welcome />} />
-                <Route path="become-a-host" element={<BecomeHost />} />
+
                 <Route element={<AppLayout />}>
-                  {/* <Route index element={<Navigate replace to="dashboard" />} /> */}
+                  <Route index element={<Dashboard />} />
                   <Route path="dashboard" element={<Dashboard />} />
                   <Route path="bookings" element={<Bookings />} />
-                  {/* <Route path="rooms" element={<Rooms />} /> */}
                   <Route path="account" element={<Accounts />} />
-                  <Route path="property" element={<Property />} />
+
+                  <Route path="property" element={<PropertyLists />} />
+                  <Route path="property/:propertyId" element={<Property />} />
                 </Route>
 
+                <Route path="become-a-host" element={<BecomeHost />} />
                 <Route path="*" element={<PageNotFound />} />
                 <Route path="error" element={<Error />} />
               </Routes>

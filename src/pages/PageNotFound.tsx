@@ -23,7 +23,7 @@ function PageNotFound() {
           gap: 2,
         }}
       >
-        <img src={src} height="350px" width="350px" />
+        <img src={src} height="450px" width="350px" />
         <Stack direction="row" sx={{ alignItems: "center" }} spacing={2}>
           <WarningAmberIcon color="warning" />
           <Typography fontSize="2rem" fontWeight="bold">

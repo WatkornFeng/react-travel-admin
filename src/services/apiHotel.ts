@@ -1,5 +1,6 @@
 //localhost:3000/api/v1/hotels/hotel-stats
 
+import { IProperty } from "./apiUser";
 import { API_HOST_URL, ROUTE_HOTEL, ROUTE_HOTEL_STATS } from "./constants";
 
 interface ICreateHotel {
@@ -30,6 +31,20 @@ export async function updateProperty(
   });
 
   const res = await response.json();
+
+  return res;
+}
+
+export interface IGetHotelResponse {
+  status: string;
+  data: {
+    hotel: IProperty;
+  };
+}
+export async function getHotel(id: string) {
+  const response = await fetch(API_HOST_URL + ROUTE_HOTEL + "/" + id);
+
+  const res: IGetHotelResponse = await response.json();
 
   return res;
 }
