@@ -1,0 +1,12 @@
+export const RESET_DEFAULT = "becomeHost-form/reset-default";
+export const SELECT_TYPE = "becomeHost-form/select-type";
+export const SELECT_LOCATION = "becomeHost-form/select-location";
+export const SELECT_STARS = "becomeHost-form/select-stars";
+export const SELECT_AMENITIES = "becomeHost-form/select-amenities";
+export const SELECT_PICTURES = "becomeHost-form/select-pictures";
+export const CREATE_NAME = "becomeHost-form/create-name";
+export const CREATE_DESCRIPTION = "becomeHost-form/create-description";
+export const DELETE_PICTURE = "becomeHost-form/delete-picture";
+export const SELECT_PRICE = "becomeHost-form/select-price";
+export const SELECT_GUEST = "becomeHost-form/select-guest";
+export const SELECT_BED = "becomeHost-form/select-bed";

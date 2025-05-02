@@ -1,0 +1,56 @@
+.bouncing-loader-sm {
+  display: flex;
+  justify-content: center;
+}
+
+.bouncing-loader-sm > div {
+  width: 8px;
+  height: 8px;
+  margin: 3px 3px;
+  border-radius: 50%;
+  background-color: #142b2fff;
+  opacity: 1;
+  animation: bouncing-loader-sm 0.6s infinite alternate;
+}
+@keyframes bouncing-loader-sm {
+  to {
+    opacity: 0.1;
+    transform: translateY(-2px);
+  }
+}
+
+.bouncing-loader-sm > div:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.bouncing-loader-sm > div:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.bouncing-loader-large {
+  display: flex;
+  justify-content: center;
+}
+
+.bouncing-loader-large > div {
+  width: 16px;
+  height: 16px;
+  margin: 3px 6px;
+  border-radius: 50%;
+  background-color: #142b2fff;
+  opacity: 1;
+  animation: bouncing-loader-large 0.6s infinite alternate;
+}
+@keyframes bouncing-loader-large {
+  to {
+    opacity: 0.1;
+    transform: translateY(-7px);
+  }
+}
+
+.bouncing-loader-large > div:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.bouncing-loader-large > div:nth-child(2) {
+  animation-delay: 0.4s;
+}
