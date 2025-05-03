@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Box, IconButton, Stack, Typography, styled } from "@mui/material";
 import WestIcon from "@mui/icons-material/West";
 
@@ -15,6 +16,7 @@ import Header from "../features/properties/Header";
 import Images from "../features/properties/Images";
 import LocationDetail from "../features/properties/LocationDetail";
 import { getHotel } from "../services/apiHotel";
+import DeleteProperty from "../features/properties/DeleteProperty";
 
 const StyledList = styled(Box)({
   display: "flex",
@@ -34,15 +36,22 @@ const modalInitialState = {
 function Property() {
   const navigate = useNavigate();
   const { propertyId } = useParams();
+  const { getAccessTokenSilently } = useAuth0();
   const { isError, data, isFetching } = useQuery({
-    queryKey: ["property"],
-    queryFn: () => (propertyId ? getHotel(propertyId) : null),
+    queryKey: ["property", propertyId], // include id to cache uniquely
+    queryFn: async () => {
+      if (!propertyId) return null;
+      const token = await getAccessTokenSilently();
+      return getHotel(propertyId, token);
+    },
+    enabled: !!propertyId, // avoid running if no ID
   });
 
   const [openModal, setOpenModal] = useState<IModalState>(modalInitialState);
 
   const property = data && data.status === "success" && data.data.hotel;
-  const isNoProperty = data && data.status === "fail";
+  const isNoProperty =
+    data && data.status === "fail" && data.message === "No hotel with that ID";
 
   return (
     <Stack spacing={10}>
@@ -130,6 +139,10 @@ function Property() {
             <Header field="Guests" edit={false} />
             <Content detail={property.guestsQuantity} />
           </StyledList>
+          <DeleteProperty
+            propertyName={property.name}
+            propertyId={property._id}
+          />
         </>
       )}
       {isError && (

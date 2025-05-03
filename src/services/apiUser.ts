@@ -44,9 +44,14 @@ export interface IGetUserResponse {
   data: IUser;
 }
 
-export async function getUserByEmail(email: string) {
+export async function getUserByEmail(email: string, token: string) {
   const response = await fetch(
-    API_HOST_URL + ROUTE_USER_BY_EMAIL + "/" + email
+    API_HOST_URL + ROUTE_USER_BY_EMAIL + "/" + email,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   const data: IGetUserResponse = await response.json();
 

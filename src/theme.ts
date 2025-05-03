@@ -34,6 +34,12 @@ declare module "@mui/material/styles" {
         dark: string;
         light: string;
       };
+      error: {
+        main: string;
+        dark: string;
+        light: string;
+        contrastText: string;
+      };
     };
   }
 }
@@ -68,6 +74,12 @@ export const themeColors = (mode: IModePalette) => ({
           customGold: {
             main: yellow[100],
             contrast: yellow[600],
+          },
+          error: {
+            main: red[500],
+            dark: red[700],
+            light: red[300],
+            contrastText: "#fff",
           },
 
           text: {

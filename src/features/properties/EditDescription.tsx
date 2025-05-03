@@ -14,6 +14,7 @@ import {
   MIN_LENGTH_DESCRIPTION,
 } from "../../utils/constant";
 import { INewData, updateProperty } from "../../services/apiHotel";
+import { useAuth0 } from "@auth0/auth0-react";
 interface IProps {
   data: string;
   propertyId: string;
@@ -22,10 +23,11 @@ interface IProps {
 }
 function EditDescription({ data, propertyId, setModal }: IProps) {
   const queryClient = useQueryClient();
+  const { getAccessTokenSilently } = useAuth0();
 
   const { isPending: isUpdatingDescription, mutate: updateDescription } =
     useMutation({
-      mutationFn: ({
+      mutationFn: async ({
         fieldName,
         newData,
         id,
@@ -33,17 +35,18 @@ function EditDescription({ data, propertyId, setModal }: IProps) {
         fieldName: string;
         newData: INewData;
         id: string;
-      }) => updateProperty(fieldName, newData, id),
-      onSuccess: (response) => {
-        if (response.status === "fail") {
-          return toast.error(response.message);
-        }
+      }) => {
+        const token = await getAccessTokenSilently(); // ✅ Get token
+        return updateProperty(fieldName, newData, id, token); // ✅ Pass token
+      },
+      onSuccess: () => {
         toast.success("Update Property description successfully.");
         queryClient.invalidateQueries({ queryKey: ["property"] });
         setModal({ value: "", open: false });
       },
-      onError: () => {
-        toast.error("Update Property description failed.Please try again");
+      onError: (err) => {
+        toast.error(`Update Property description failed. ${err.message}`);
+        setModal({ value: "", open: false });
       },
     });
 

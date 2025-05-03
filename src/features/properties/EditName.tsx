@@ -12,6 +12,7 @@ import DialogLoading from "../../components/DialogLoading";
 
 import { INewData, updateProperty } from "../../services/apiHotel";
 import { MAX_LENGTH_NAME, MIN_LENGTH_NAME } from "../../utils/constant";
+import { useAuth0 } from "@auth0/auth0-react";
 
 interface IProps {
   data: string;
@@ -21,9 +22,9 @@ interface IProps {
 }
 function EditName({ data, propertyId, setModal }: IProps) {
   const queryClient = useQueryClient();
-
+  const { getAccessTokenSilently } = useAuth0();
   const { isPending: isUpdatingName, mutate: updateName } = useMutation({
-    mutationFn: ({
+    mutationFn: async ({
       fieldName,
       newData,
       id,
@@ -31,17 +32,18 @@ function EditName({ data, propertyId, setModal }: IProps) {
       fieldName: string;
       newData: INewData;
       id: string;
-    }) => updateProperty(fieldName, newData, id),
-    onSuccess: (response) => {
-      if (response.status === "fail") {
-        return toast.error(response.message);
-      }
+    }) => {
+      const token = await getAccessTokenSilently(); // ✅ Get token
+      return updateProperty(fieldName, newData, id, token); // ✅ Pass token
+    },
+    onSuccess: () => {
       toast.success("Update Property name successfully.");
       queryClient.invalidateQueries({ queryKey: ["property"] });
       setModal({ value: "", open: false });
     },
     onError: () => {
       toast.error("Update Property name failed.Please try again");
+      setModal({ value: "", open: false });
     },
   });
 

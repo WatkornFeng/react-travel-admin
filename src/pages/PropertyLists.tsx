@@ -33,7 +33,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 function PropertyLists() {
   const navigate = useNavigate();
-  const { user: authUser } = useAuth0();
+  const { user: authUser, getAccessTokenSilently } = useAuth0();
 
   // First: Fetch user based on Auth0 email
   const {
@@ -42,7 +42,10 @@ function PropertyLists() {
     isError: isErrorUser,
   } = useQuery({
     queryKey: ["user", authUser?.email],
-    queryFn: () => getUserByEmail(authUser!.email!),
+    queryFn: async () => {
+      const token = await getAccessTokenSilently();
+      return getUserByEmail(authUser!.email!, token);
+    },
     enabled: !!authUser?.email,
   });
 
@@ -54,7 +57,10 @@ function PropertyLists() {
     isError: isErrorProperties,
   } = useQuery({
     queryKey: ["properties", userData?.data._id],
-    queryFn: () => getHotelsOnUser(userData!.data._id),
+    queryFn: async () => {
+      const token = await getAccessTokenSilently();
+      return getHotelsOnUser(userData!.data._id, token);
+    },
     enabled: !!userData?.data._id,
   });
 

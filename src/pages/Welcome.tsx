@@ -7,8 +7,9 @@ import LoginButton from "../components/LoginButton";
 
 function Welcome() {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth0();
-
+  const { isAuthenticated, isLoading } = useAuth0();
+  console.log(isAuthenticated, "Aut");
+  console.log(isLoading, "loading");
   return (
     <>
       <StyledBackgroundImage />
@@ -34,16 +35,27 @@ function Welcome() {
           guests. <strong>SmileTravel</strong> also lets you manage your
           accommodation in an easy way, no hassle and no fuss.
         </Typography>
-        {!isAuthenticated && <LoginButton />}
+
+        {!isLoading && !isAuthenticated && <LoginButton />}
         {isAuthenticated && (
-          <Button
-            variant="contained"
-            color="success"
-            sx={{ minWidth: "500px", minHeight: "70px" }}
-            onClick={() => navigate("/become-a-host")}
-          >
-            <Typography fontWeight="bold">Register Now</Typography>
-          </Button>
+          <>
+            <Button
+              variant="contained"
+              color="success"
+              sx={{ minWidth: "500px", minHeight: "70px" }}
+              onClick={() => navigate("/become-a-host")}
+            >
+              <Typography fontWeight="bold">Create your list Now</Typography>
+            </Button>
+            <Button
+              variant="contained"
+              color="success"
+              sx={{ minWidth: "500px", minHeight: "70px" }}
+              onClick={() => navigate("/dashboard")}
+            >
+              <Typography fontWeight="bold">Go to Dashboard</Typography>
+            </Button>
+          </>
         )}
       </Box>
     </>

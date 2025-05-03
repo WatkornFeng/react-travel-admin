@@ -19,18 +19,22 @@ export type INewData = string;
 export async function updateProperty(
   fieldName: string,
   newData: INewData,
-  id: string
+  id: string,
+  token: string
 ) {
   const response = await fetch(API_HOST_URL + ROUTE_HOTEL + "/myHotels/" + id, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ [fieldName]: newData }),
   });
 
   const res = await response.json();
-
+  if (res.status === "fail") {
+    throw new Error(res.message);
+  }
   return res;
 }
 
@@ -39,13 +43,22 @@ export interface IGetHotelResponse {
   data: {
     hotel: IProperty;
   };
+  message?: string;
 }
-export async function getHotel(propertyId: string) {
+export async function getHotel(propertyId: string, token: string) {
   const response = await fetch(
-    API_HOST_URL + ROUTE_HOTEL + "/myHotels/" + propertyId
+    API_HOST_URL + ROUTE_HOTEL + "/myHotels/" + propertyId,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
 
   const res: IGetHotelResponse = await response.json();
+  if (res.status === "fail") {
+    throw new Error(res.message);
+  }
 
   return res;
 }
@@ -68,12 +81,39 @@ export interface IGetHotelsOnUserResponse {
 
   length: number;
 }
-export async function getHotelsOnUser(userId: string) {
+export async function getHotelsOnUser(userId: string, token: string) {
   const response = await fetch(
-    API_HOST_URL + ROUTE_USER + "/" + userId + "/hotels"
+    API_HOST_URL + ROUTE_USER + "/" + userId + "/hotels",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
 
   const res: IGetHotelsOnUserResponse = await response.json();
+
+  return res;
+}
+export interface IDeleteHotelResponse {
+  status: string;
+  message?: string;
+}
+export async function deleteHotel(propertyId: string, token: string) {
+  const response = await fetch(
+    API_HOST_URL + ROUTE_HOTEL + "/myHotels/" + propertyId,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  const res: IGetHotelResponse = await response.json();
+  if (res.status === "fail") {
+    throw new Error(res.message);
+  }
 
   return res;
 }

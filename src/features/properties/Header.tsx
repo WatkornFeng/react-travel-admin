@@ -26,6 +26,7 @@ function Header({ field, modalContent, edit, modal, setModal }: IProps) {
   const openModal = () => {
     if (setModal) setModal({ value: field, open: true });
   };
+
   return (
     <>
       {modal && (
