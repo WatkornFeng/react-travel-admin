@@ -26,7 +26,7 @@ function ChooseProperty() {
   });
 
   const handleSelectionChange = (
-    event: React.MouseEvent<HTMLElement>,
+    _: React.MouseEvent<HTMLElement>,
     newValue: string
   ) => {
     dispatch({ type: SELECT_TYPE, payload: newValue });

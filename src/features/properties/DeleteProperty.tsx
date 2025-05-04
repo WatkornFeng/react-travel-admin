@@ -1,8 +1,5 @@
-import DeleteIcon from "@mui/icons-material/Delete";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-import { IModalState } from "../../pages/Property";
-import ModalForm from "./ModalForm";
+import { useAuth0 } from "@auth0/auth0-react";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   Dialog,
   DialogContent,
@@ -10,31 +7,13 @@ import {
   IconButton,
   Stack,
 } from "@mui/material";
-import { useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
-import DeleteButton from "../../components/DeleteButton";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuth0 } from "@auth0/auth0-react";
-import { deleteHotel } from "../../services/apiHotel";
-import { Token } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import DialogLoading from "../../components/DialogLoading";
+import { useState } from "react";
 import toast from "react-hot-toast";
-const StyledBtn = styled(Button)(({ theme }) => ({
-  borderRadius: 2,
-
-  textTransform: "uppercase",
-  height: "70%",
-  border: `3px solid ${theme.palette.customRed.contrast}`,
-  backgroundColor: theme.palette.customRed.main,
-  color: theme.palette.customRed.contrast,
-  fontWeight: "bold",
-  "&:hover": {
-    border: `3px solid ${theme.palette.customRed.main}`,
-    backgroundColor: theme.palette.customRed.contrast,
-    color: theme.palette.customRed.main,
-  },
-}));
+import { useNavigate } from "react-router-dom";
+import DeleteButton from "../../components/DeleteButton";
+import DialogLoading from "../../components/DialogLoading";
+import { deleteHotel } from "../../services/apiHotel";
 
 function DeleteProperty({
   propertyName,

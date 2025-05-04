@@ -16,7 +16,7 @@ function ChooseStar() {
     dispatch,
   } = useBecomeHost() as IBecomeHostContext;
   const handleSelectionChange = (
-    event: React.MouseEvent<HTMLElement>,
+    _: React.MouseEvent<HTMLElement>,
     newValue: number
   ) => {
     dispatch({ type: SELECT_STARS, payload: newValue });

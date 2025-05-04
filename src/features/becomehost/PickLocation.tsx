@@ -39,7 +39,7 @@ function PickLocation() {
           display_name: location,
           address: { country_code, province, city },
         } = await getLocationFromLatLng(lat, lng);
-        const res = await getLocationFromLatLng(lat, lng);
+        await getLocationFromLatLng(lat, lng);
 
         dispatch({
           type: SELECT_LOCATION,
