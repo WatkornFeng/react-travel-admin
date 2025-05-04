@@ -8,8 +8,7 @@ import LoginButton from "../components/LoginButton";
 function Welcome() {
   const navigate = useNavigate();
   const { isAuthenticated, isLoading } = useAuth0();
-  console.log(isAuthenticated, "Aut");
-  console.log(isLoading, "loading");
+
   return (
     <>
       <StyledBackgroundImage />

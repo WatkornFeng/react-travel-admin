@@ -33,7 +33,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 function PropertyLists() {
   const navigate = useNavigate();
-  const { user: authUser, getAccessTokenSilently } = useAuth0();
+  const {
+    user: authUser,
+    getAccessTokenSilently,
+    isLoading: isLoadingAuthUser,
+  } = useAuth0();
 
   // First: Fetch user based on Auth0 email
   const {
@@ -135,7 +139,8 @@ function PropertyLists() {
           </TableContainer>
         )}
 
-        {noProperties && <NoProperty />}
+        {(!isLoadingUser || !isLoadingProperties || !isLoadingAuthUser) &&
+          noProperties && <NoProperty />}
 
         {isError && (
           <ErrorMessage
